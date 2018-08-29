@@ -11,6 +11,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 ;//servicios
 import {LoginService} from './services/login.service';
+import {ServicioPersonaService} from './services/servicio-persona.service';
+import {ServicioNegocioService} from './services/servicio-negocio.service';
 //rutas
 import {routing} from './Rutas';
 
@@ -21,6 +23,12 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from "angular-6-social-login";
+import { PanelAdministradorComponent } from './componentes/panel-administrador/panel-administrador.component';
+import { PanelClienteComponent } from './componentes/panel-cliente/panel-cliente.component';
+import { RegistrarOfertaComponent } from './componentes/registrar-oferta/registrar-oferta.component';
+import { ListarOfertaComponent } from './componentes/listar-oferta/listar-oferta.component';
+import { ListarNegociosComponent } from './componentes/listar-negocios/listar-negocios.component';
+import { ListarPersonaComponent } from './componentes/listar-persona/listar-persona.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -32,7 +40,7 @@ export function getAuthServiceConfigs() {
         },
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('341017487802-9cvt6qag7bh9mkpli21it1r2srkciek7.apps.googleusercontent.com')
+          provider: new GoogleLoginProvider('601849367140-6k319jsmtut4oqk3ihdbeolanof3d56m.apps.googleusercontent.com')
         }
       ]
   );
@@ -45,7 +53,13 @@ export function getAuthServiceConfigs() {
     BienvenidaComponent,
     LoginComponent,
     RegistrarComponent,
-    RegistrarNegocioComponent
+    RegistrarNegocioComponent,
+    PanelAdministradorComponent,
+    PanelClienteComponent,
+    RegistrarOfertaComponent,
+    ListarOfertaComponent,
+    ListarNegociosComponent,
+    ListarPersonaComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +70,9 @@ export function getAuthServiceConfigs() {
     SocialLoginModule
   ],
   providers: [
+    ServicioNegocioService,
     LoginService,
+    ServicioPersonaService,
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs

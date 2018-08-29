@@ -18,6 +18,7 @@ export class RegistrarRequestPersona {
     correo: string;
     contrasena: string;
     telefono: string;
+    ciudad:string;
     genero: string;
     rol: string;
     estado: string;

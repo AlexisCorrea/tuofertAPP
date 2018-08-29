@@ -12,6 +12,6 @@
 import { RegistrarRequestNegocio } from './registrarRequestNegocio';
 
 
-export interface JsonApiBodyRequestNegocio {
+export class JsonApiBodyRequestNegocio {
     negocio: Array<RegistrarRequestNegocio>;
 }

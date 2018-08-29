@@ -1,0 +1,31 @@
+.contenedor{
+    background: white;
+    width: 80%;
+    height: 100%;
+    float: right;
+}
+aside{
+    background: white ;
+    height: 100%;
+    width: 20%;
+    float: left;
+    
+}
+.boton1{
+    /* margin-top: 70%; */
+    width: 100%;
+    background: #212529;
+    border-radius: 0;
+   height: 6.5%;
+    border-color: white;
+    
+}
+
+.boton2{
+    width: 100%;
+    background: #212529;
+    border-radius: 0;
+   
+    border-color: white;
+}
+

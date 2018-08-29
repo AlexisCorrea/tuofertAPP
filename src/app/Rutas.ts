@@ -3,8 +3,10 @@ import {RegistrarComponent} from '../app/componentes/registrar/registrar.compone
 import {LoginComponent} from '../app/componentes/login/login.component';
 import {RegistrarNegocioComponent} from '../app/componentes/registrar-negocio/registrar-negocio.component';
 import {Routes, RouterModule} from '@angular/router';
+import {ListarPersonaComponent} from '../app/componentes/listar-persona/listar-persona.component';
+import {PanelAdministradorComponent} from '../app/componentes/panel-administrador/panel-administrador.component';
 const rutas: Routes = [
-  {path: '', component: BienvenidaComponent, pathMatch: 'full' },
+  {path: '', component: PanelAdministradorComponent, pathMatch: 'full' },
   {
     path: 'Bienvenida',
     component: BienvenidaComponent

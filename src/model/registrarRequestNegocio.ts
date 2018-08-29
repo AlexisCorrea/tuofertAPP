@@ -11,12 +11,22 @@
  */
 
 
-export interface RegistrarRequestNegocio {
+export class RegistrarRequestNegocio {
     id: string;
     nombre: string;
     nit: string;
+    correo:string;
     foto: string;
+    detalle:string;
     tipo: string;
+    telefono:string;
     ubicacion: string;
-    idAdministrador: string;
+    id_administrador: string;
+    token:string;
+    constructor(){
+        
+    }
+    valor(){
+        return this.nombre;
+    }
 }
