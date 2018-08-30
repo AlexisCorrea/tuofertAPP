@@ -5,7 +5,8 @@ import{LoginRequest}from '../../../model/loginRequest';
 import {LoginService} from '../../services/login.service';
 import{JsonApiBodyRequestPersona}from '../../../model/jsonApiBodyRequestPersona';
 import {RegistrarRequestPersona} from '../../../model/registrarRequestPersona';
-
+import { Router } from '@angular/router';
+import { SesionesService } from "../../services/sesiones.service";
 import {
   AuthService,
   FacebookLoginProvider,
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit{
   persona=new LoginRequest;
   body= new JsonApiBodyLogin;
   
-  constructor(private servicioLogin: LoginService,private socialAuthService: AuthService ) {
+  constructor(private servicioLogin: LoginService,private socialAuthService: AuthService, private enrutador: Router,private sesion:SesionesService ) {
     this.forma= new FormGroup({
     'correo': new FormControl(this.persona.correo),
       'contrasena': new FormControl(this.persona.contrasena)
@@ -43,8 +44,6 @@ export class LoginComponent implements OnInit{
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
-        
-            
       }
     );
   }
@@ -53,15 +52,24 @@ export class LoginComponent implements OnInit{
   logiar(){
     this.persona.correo=this.forma.controls['correo'].value;
     this.persona.contrasena=this.forma.controls['contrasena'].value;
-   
     this.body.persona=[this.persona];
     this.servicioLogin.postLogin(this.body).subscribe(data=>{
       this.respuesta.persona=[data]
       console.log(this.respuesta.persona[0]);
+      this.procesar(this.respuesta.persona[0]);
     })
 
   }
-  procesar(){
+  procesar(respuesta){
+    console.log(respuesta.persona[0].rol);
+    if (respuesta.persona[0].rol==="administrador") {
+      this.sesion.persona=[respuesta.persona[0]];
+      this.enrutador.navigate(['/Administrador','1']);
+    }if (respuesta.persona[0].rol==="Cliente") {
+      this.enrutador.navigate(['Cliente']);
+    } else {
+      // this.enrutador.navigate(['Super']);
+    }
 
   }
 }

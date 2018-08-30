@@ -11,8 +11,11 @@
  */
 
 
-export interface DeleteRequestNegocio {
+export class DeleteRequestNegocio {
     id: string;
     idadministrador: string;
     token: string;
+    constructor(){
+        
+    }
 }

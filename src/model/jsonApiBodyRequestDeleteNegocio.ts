@@ -12,6 +12,9 @@
 import { DeleteRequestNegocio } from './deleteRequestNegocio';
 
 
-export interface JsonApiBodyRequestDeleteNegocio {
+export class JsonApiBodyRequestDeleteNegocio {
     negocio: Array<DeleteRequestNegocio>;
+    constructor(){
+        
+    }
 }

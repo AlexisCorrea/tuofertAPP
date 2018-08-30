@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioOfertaService } from "../../services/servicio-oferta.service";
 
 @Component({
   selector: 'app-listar-oferta',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarOfertaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio_oferta:ServicioOfertaService) {
+      this.llegarTabla();
+   }
 
   ngOnInit() {
   }
+  llegarTabla(){
 
+  }
 }

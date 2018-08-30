@@ -12,6 +12,9 @@
 import { GetRequestNegocio } from './getRequestNegocio';
 
 
-export interface JsonApiBodyRequestGetNegocio {
+export class JsonApiBodyRequestGetNegocio {
     negocio: Array<GetRequestNegocio>;
+    constructor(){
+        
+    }
 }

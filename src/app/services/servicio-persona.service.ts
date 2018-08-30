@@ -9,7 +9,7 @@ export class ServicioPersonaService {
   rutaBase = 'http://localhost:8050/orquestador/';
   constructor(private http: HttpClient) { }
 
-  postRegistrarPersona( body): Observable<any> {
+  postRegistrarPersona(body):Observable<any> {
     return this.http.post(this.rutaBase+"registrar/persona", body);
   }
   getListarPersonas(): Observable<any>{

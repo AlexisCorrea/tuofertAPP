@@ -14,4 +14,7 @@ import { RegistrarRequestNegocio } from './registrarRequestNegocio';
 
 export class JsonApiBodyRequestNegocio {
     negocio: Array<RegistrarRequestNegocio>;
+    constructor(){
+        
+    }
 }

@@ -11,7 +11,7 @@
  */
 
 
-export interface GetRequestNegocio {
+export class GetRequestNegocio {
     tipoConsulta: string;
     parametro: string;
     token: string;

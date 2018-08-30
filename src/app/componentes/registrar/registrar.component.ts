@@ -31,7 +31,7 @@ export class RegistrarComponent implements OnInit {
   guardar(){
     this.persona.id="";
     this.persona.nombre=this.forma.controls['nombre'].value;
-    this.persona.apellido=this.forma.controls['apellidos'].value;
+    this.persona.apellidos=this.forma.controls['apellidos'].value;
     this.persona.correo=this.forma.controls['correo'].value;
     this.persona.contrasena=this.forma.controls['contrasena'].value;
     this.persona.telefono=this.forma.controls['telefono'].value;

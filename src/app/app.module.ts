@@ -9,10 +9,12 @@ import { RegistrarComponent } from './componentes/registrar/registrar.component'
 import { RegistrarNegocioComponent } from './componentes/registrar-negocio/registrar-negocio.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
-;//servicios
+//servicios
+import { ServicioOfertaService } from "../app/services/servicio-oferta.service";
 import {LoginService} from './services/login.service';
 import {ServicioPersonaService} from './services/servicio-persona.service';
 import {ServicioNegocioService} from './services/servicio-negocio.service';
+import { SesionesService } from "../app/services/sesiones.service";
 //rutas
 import {routing} from './Rutas';
 
@@ -73,6 +75,8 @@ export function getAuthServiceConfigs() {
     ServicioNegocioService,
     LoginService,
     ServicioPersonaService,
+    ServicioOfertaService,
+    SesionesService,
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs

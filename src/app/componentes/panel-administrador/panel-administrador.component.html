@@ -1,21 +1,22 @@
 
 <aside>
-    <button type="button" class="btn btn-primary boton1">Registrar Negocio</button>
-    
-    
-    <button type="button" class="btn btn-primary boton1">Registrar Oferta</button>
+    <button type="button" class="btn btn-primary boton1" (click)="panel='1'">Registrar Negocios</button>
 
+    <button type="button" class="btn btn-primary boton1" (click)="panel='2'">Listar Negocios</button>
+
+    <button type="button" class="btn btn-primary boton1" (click)="panel='3'">Registrar Ofertas</button>
     
-    <button type="button" class="btn btn-primary boton1">Listar Negocio</button>
+    <button type="button" class="btn btn-primary boton1" (click)="panel='4'">Listar Ofertas</button>
+
+    <button type="button" class="btn btn-primary boton1" (click)="panel='5'">Editar Perfil</button>
    
-    
-    <button type="button" class="btn btn-primary boton1">Listar Oferta</button>
-   
-    
-    <button type="button" class="btn btn-primary boton1">Salir</button>
+    <button type="button" class="btn btn-primary boton1" (click)="panel='6'">Salir</button>
 </aside>
-<div class="contenedor">
-    <app-registrar></app-registrar>
-    <!-- <app-registrar-negocio></app-registrar-negocio> -->
-    <!-- <app-listar-persona></app-listar-persona> -->
+<div class="contenedor" [ngSwitch]="panel">
+    <!-- <app-registrar *ngSwitchCase="1" ></app-registrar> -->
+    <app-registrar-negocio *ngSwitchCase="1" ></app-registrar-negocio>
+    <app-listar-negocios *ngSwitchCase="2"></app-listar-negocios>
+    <app-registrar-oferta *ngSwitchCase="3"></app-registrar-oferta>
+    <app-listar-oferta *ngSwitchCase="4"></app-listar-oferta>
+    <!-- <app-listar-persona *ngSwitchCase="3" ></app-listar-persona> -->
 </div>

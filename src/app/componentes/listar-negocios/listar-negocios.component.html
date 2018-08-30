@@ -1,3 +1,33 @@
-<p>
-  listar-negocios works!
-</p>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <th scope="col">ID</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Nit</th>
+    <th scope="col">Correo</th>
+    <th scope="col">Foto</th>
+    <th scope="col">Detalle</th>
+    <th scope="col">Tipo</th>
+    <th scope="col">Telefono</th>
+    <th scope="col">Ubicacion</th>
+    <th scope="col">Eliminar</th>
+    <th scope="col">Editar</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let negocio of body.negocio; let i = index">
+      <td><label >{{negocio.id}}</label></td>
+      <td><label >{{negocio.nombre}}</label></td>
+      <td><label >{{negocio.nit}}</label></td>
+      <td><label >{{negocio.correo}}</label></td>
+      <td><label >{{negocio.foto}}</label></td>
+      <td><label >{{negocio.detalle}}</label></td>
+      <td><label >{{negocio.tipo}}</label></td>
+      <td><label >{{negocio.telefono}}</label></td>
+      <td><label >{{negocio.ubicacion}}</label></td>
+      <td><button (click)="eliminar(negocio.id)">Eliminar</button></td>
+      <td><button (click)="editar(i)">Editar</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
