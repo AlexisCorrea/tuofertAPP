@@ -1,27 +1,35 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SesionesService } from "../../services/sesiones.service";
-import {ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import {ServicioNegocioService} from '../../services/servicio-negocio.service';
 @Component({
   selector: 'app-panel-administrador',
   templateUrl: './panel-administrador.component.html',
   styleUrls: ['./panel-administrador.component.css']
 })
-export class PanelAdministradorComponent implements OnInit {
+export class PanelAdministradorComponent implements OnInit{
   panel;
-  @Input('texto1') prop:string;
+  
 
-  constructor(private sesion:SesionesService) {
-    
-    console.log(this.sesion.persona[0]);
-   }
- 
-  ngOnInit() {
+  constructor(private sesion:SesionesService,private servicio_negocio:ServicioNegocioService,
+  private enrutador:Router) {
     try {
-      console.log(this.prop);
+      console.log(sesion.persona[0]);
     } catch (error) {
-      
+      alert("error logearse primero");
+      this.enrutador.navigate(['Bienvenida']);
     }
-    
+   }
+   
+  ngOnInit() {
   }
 
+  public asignarpanel(numero){
+    this.panel=numero;
+    console.log(this.panel);
+  }
+  salir(){
+    this.sesion.persona=[];
+    this.enrutador.navigate(['Bienvenida']);
+  }
 }

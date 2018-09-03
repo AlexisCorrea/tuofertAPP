@@ -14,7 +14,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let negocio of body.negocio; let i = index">
-      <td><label >{{negocio.id}}</label></td>
       <td><label >{{negocio.nombre}}</label></td>
       <td><label >{{negocio.nit}}</label></td>
       <td><label >{{negocio.correo}}</label></td>
@@ -23,8 +22,10 @@
       <td><label >{{negocio.tipo}}</label></td>
       <td><label >{{negocio.telefono}}</label></td>
       <td><label >{{negocio.ubicacion}}</label></td>
-      <td><button (click)="eliminar(negocio.id)">Eliminar</button></td>
-      <td><button (click)="editar(i)">Editar</button></td>
+      <td><button (click)="eliminar(negocio.id)" class="btn btn-danger">Eliminar</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="editar(i)">
+          Editar
+      </button></td>
     </tr>
   </tbody>
 </table>

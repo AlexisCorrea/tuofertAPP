@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit{
     console.log(respuesta.persona[0].rol);
     if (respuesta.persona[0].rol==="administrador") {
       this.sesion.persona=[respuesta.persona[0]];
-      this.enrutador.navigate(['/Administrador','1']);
+      this.enrutador.navigate(['Administrador']);
     }if (respuesta.persona[0].rol==="Cliente") {
       this.enrutador.navigate(['Cliente']);
     } else {

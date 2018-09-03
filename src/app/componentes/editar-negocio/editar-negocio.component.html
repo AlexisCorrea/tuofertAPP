@@ -1,0 +1,55 @@
+<div class="contenedor">
+    <form [(formGroup)]="forma" (ngSubmit)="guardar()">
+       
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">Nombre</label>
+              <input formControlName="nombre" name="nombre" type="text" class="form-control" id="inputEmail4" >
+            </div>
+            <div class="form-group col-md-12">
+              <label for="inputPassword4">Nit</label>
+              <input formControlName="nit" name="nit" type="text" class="form-control" id="inputPassword4" >
+            </div>
+            <div class="form-group col-md-12">
+               <label for="inputPassword4">Detalle</label>
+               <input formControlName="detalle" name="datele" type="text" class="form-control" id="inputPassword4" >
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="inputEmail4">correo</label>
+                <input formControlName="correo" name="correo" type="text" class="form-control" id="inputEmail4" >
+              </div>
+              <div class="form-group col-md-12">
+                <label for="inputPassword4">ubicacion</label>
+                <input formControlName="ubicacion" name="ubicacion" type="text" class="form-control" id="inputPassword4" >
+              </div>
+              <div class="form-group col-md-12">
+                  <label for="inputPassword4">telefono</label>
+                  <input formControlName="telefono" name="telefono" type="text" class="form-control" id="inputPassword4" >
+                </div>
+            </div>
+    
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="inputState">Tipo de negocio</label>
+                  <select formControlName="tipo" name="tipo" id="inputState" class="form-control">
+                    <option selected>Selecionar..</option>
+                    <option>Restaurante</option>
+                    <option>Bar</option>
+                    <option>Mercado</option>
+                    <option>Almacen</option>
+                    <option>Cine</option>
+                    <option>carnet</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputAddress2">Foto</label>
+                    <input formControlName="foto" name="foto" type="text" class="form-control" id="inputAddress2" >
+                  </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </form>
+</div>
+
+  

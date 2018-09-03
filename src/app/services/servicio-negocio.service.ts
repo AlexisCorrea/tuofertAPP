@@ -11,6 +11,7 @@ import {RegistrarRequestNegocio} from '../../model/registrarRequestNegocio';
   providedIn: 'root'
 })
 export class ServicioNegocioService {
+  panel:any;
   bodynegocio= new RegistrarRequestNegocio();
   rutaBase = 'http://localhost:8050/orquestador/';
   constructor(private http: HttpClient) { }

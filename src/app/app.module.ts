@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -31,6 +32,10 @@ import { RegistrarOfertaComponent } from './componentes/registrar-oferta/registr
 import { ListarOfertaComponent } from './componentes/listar-oferta/listar-oferta.component';
 import { ListarNegociosComponent } from './componentes/listar-negocios/listar-negocios.component';
 import { ListarPersonaComponent } from './componentes/listar-persona/listar-persona.component';
+import { EditarNegocioComponent } from './componentes/editar-negocio/editar-negocio.component';
+import { EditarPerfilAdministradorComponent } from './componentes/editar-perfil-administrador/editar-perfil-administrador.component';
+import { EditarOfertaComponent } from './componentes/editar-oferta/editar-oferta.component';
+
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -61,7 +66,10 @@ export function getAuthServiceConfigs() {
     RegistrarOfertaComponent,
     ListarOfertaComponent,
     ListarNegociosComponent,
-    ListarPersonaComponent
+    ListarPersonaComponent,
+    EditarNegocioComponent,
+    EditarPerfilAdministradorComponent,
+    EditarOfertaComponent
   ],
   imports: [
     BrowserModule,

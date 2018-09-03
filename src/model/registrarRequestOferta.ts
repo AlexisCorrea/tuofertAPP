@@ -11,7 +11,7 @@
  */
 
 
-export interface RegistrarRequestOferta {
+export class RegistrarRequestOferta {
     id: string;
     producto: string;
     detalle: string;
@@ -19,6 +19,10 @@ export interface RegistrarRequestOferta {
     descuento: string;
     foto: string;
     idnegocio: string;
-    fechaInicio: string;
-    fechaFinal: string;
+    fecha_inicio: string;
+    fecha_final: string;
+    // ubicacion:string
+        constructor(){
+    
+        }
 }

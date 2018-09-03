@@ -47,7 +47,7 @@ export class RegistrarNegocioComponent implements OnInit {
     this.body.negocio=[this.negocio];
     this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
       console.log(data);
-      
+      this.forma.reset();
     })
   }
 

@@ -1,10 +1,11 @@
-import { Component, OnInit, ModuleWithComponentFactories } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {JsonApiBodyRequestNegocio} from '../../../model/jsonApiBodyRequestNegocio';
 import { RegistrarRequestNegocio } from "../../../model/registrarRequestNegocio";
 import {ServicioNegocioService} from '../../services/servicio-negocio.service';
 import {JsonApiBodyRequestGetNegocio} from '../../../model/jsonApiBodyRequestGetNegocio';
 import {GetRequestNegocio } from '../../../model/getRequestNegocio';
 import { Router } from '@angular/router';
+
 import {SesionesService} from '../../services/sesiones.service';
 import {DeleteRequestNegocio} from '../../../model/deleteRequestNegocio';
 import { JsonApiBodyRequestDeleteNegocio } from "../../../model/jsonApiBodyRequestDeleteNegocio";
@@ -15,15 +16,18 @@ import { JsonApiBodyRequestDeleteNegocio } from "../../../model/jsonApiBodyReque
   styleUrls: ['./listar-negocios.component.css']
 })
 export class ListarNegociosComponent implements OnInit {
-  panel='1';
+  
   negocio= new RegistrarRequestNegocio();
   body= new JsonApiBodyRequestNegocio();
   peticion = new GetRequestNegocio;
   bodyPeticion= new JsonApiBodyRequestGetNegocio();
   
   respuesta:any;
+  
   constructor(private servicio_negocio:ServicioNegocioService,private sesion:SesionesService,private enrutador: Router) {
-    this.llenarTabla();
+    
+   
+      this.llenarTabla();
   }
 
   ngOnInit() {
@@ -57,10 +61,13 @@ export class ListarNegociosComponent implements OnInit {
     })
   }
   editar(i){
+  console.log("estamos en editar ");
     var negocio_editar = new RegistrarRequestNegocio();
     negocio_editar=this.body.negocio[i];
     this.servicio_negocio.bodynegocio=negocio_editar;
-    this.enrutador.navigate(['Administrador']);
+    console.log("se envio"+this.servicio_negocio.panel);
+    this.enrutador.navigate(['EditarNegocio']);
+    // this.hijo.asignarpanel(1);
   }
-
+  
 }

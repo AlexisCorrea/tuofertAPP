@@ -10,7 +10,7 @@
 
     <button type="button" class="btn btn-primary boton1" (click)="panel='5'">Editar Perfil</button>
    
-    <button type="button" class="btn btn-primary boton1" (click)="panel='6'">Salir</button>
+    <button type="button" class="btn btn-primary boton1" (click)="salir()">Salir</button>
 </aside>
 <div class="contenedor" [ngSwitch]="panel">
     <!-- <app-registrar *ngSwitchCase="1" ></app-registrar> -->
@@ -18,5 +18,5 @@
     <app-listar-negocios *ngSwitchCase="2"></app-listar-negocios>
     <app-registrar-oferta *ngSwitchCase="3"></app-registrar-oferta>
     <app-listar-oferta *ngSwitchCase="4"></app-listar-oferta>
-    <!-- <app-listar-persona *ngSwitchCase="3" ></app-listar-persona> -->
+    <app-editar-perfil-administrador *ngSwitchCase="5" ></app-editar-perfil-administrador>
 </div>

@@ -12,6 +12,9 @@
 import { RegistrarRequestOferta } from './registrarRequestOferta';
 
 
-export interface JsonApiBodyRequestOferta {
+export class JsonApiBodyRequestOferta {
     oferta: Array<RegistrarRequestOferta>;
+    constructor(){
+        
+    }
 }

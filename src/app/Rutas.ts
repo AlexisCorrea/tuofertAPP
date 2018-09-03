@@ -1,7 +1,8 @@
 import {BienvenidaComponent} from '../app/componentes/bienvenida/bienvenida.component';
 import { PanelClienteComponent } from "../app/componentes/panel-cliente/panel-cliente.component";
-
+import {EditarNegocioComponent} from '../app/componentes/editar-negocio/editar-negocio.component';
 import {Routes, RouterModule} from '@angular/router';
+import {EditarOfertaComponent} from "../app/componentes/editar-oferta/editar-oferta.component";
 
 import {PanelAdministradorComponent} from '../app/componentes/panel-administrador/panel-administrador.component';
 const rutas: Routes = [
@@ -17,15 +18,16 @@ const rutas: Routes = [
   {
     path:'Cliente',
     component: PanelClienteComponent
+  },
+  {
+    path:'EditarNegocio',
+    component: EditarNegocioComponent
+  },
+  {
+    path:'EditarOferta',
+    component: EditarOfertaComponent
   }
-  // {
-  //   path: 'Registro',
-  //   component: RegistrarComponent
-  // },
-  //  {
-  //   path: 'RegistroNegocio',
-  //   component: RegistrarNegocioComponent
-  // }
+  
 ];
 
 export const routing = RouterModule.forRoot(rutas);
