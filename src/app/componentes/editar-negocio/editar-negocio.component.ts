@@ -28,6 +28,8 @@ export class EditarNegocioComponent implements OnInit {
       'detalle': new  FormControl(servicio_negocio.bodynegocio.detalle),
       'telefono': new  FormControl(servicio_negocio.bodynegocio.telefono),
       'tipo': new  FormControl(servicio_negocio.bodynegocio.tipo),
+      'latitud': new  FormControl(),
+      'longitud': new  FormControl(),
       'ubicacion': new  FormControl(servicio_negocio.bodynegocio.ubicacion)
       });
       try {
@@ -40,17 +42,19 @@ export class EditarNegocioComponent implements OnInit {
 
   ngOnInit() {
   }
-  guardar(){
+  guardar(parametro,parametro2){
     this.negocio.id=this.servicio_negocio.bodynegocio.id
     this.negocio.nombre=this.forma.controls['nombre'].value;
     this.negocio.nit=this.forma.controls['nit'].value;
     this.negocio.correo=this.forma.controls['correo'].value;
-    this.negocio.foto=this.forma.controls['foto'].value;
+    this.negocio.foto=this.servicio_negocio.bodynegocio.foto;
     this.negocio.detalle=this.forma.controls['detalle'].value;
     this.negocio.telefono=this.forma.controls['telefono'].value;
     this.negocio.tipo=this.forma.controls['tipo'].value;
     this.negocio.ubicacion=this.forma.controls['ubicacion'].value;
     this.negocio.id_administrador=this.servicio_negocio.bodynegocio.id_administrador;
+    this.negocio.latitud=parametro;
+    this.negocio.longitud=parametro2;
     this.negocio.token=this.servicio_negocio.bodynegocio.token;
     this.body.negocio=[this.negocio];
     console.log(this.body);

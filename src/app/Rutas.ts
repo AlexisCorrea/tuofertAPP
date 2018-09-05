@@ -12,7 +12,7 @@ import {MapaComponent} from '../app/componentes/mapa/mapa.component';
 
 
 const rutas: Routes = [
-  {path: '', component: MapaComponent, pathMatch: 'full' },
+  {path: '', component: BienvenidaComponent, pathMatch: 'full' },
   {
     path: 'Bienvenida',
     component: BienvenidaComponent

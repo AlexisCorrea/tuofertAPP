@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {JsonApiBodyRequestPersona} from '../../model/jsonApiBodyRequestPersona';
 @Injectable({
@@ -19,6 +19,9 @@ export class ServicioPersonaService {
     return this.http.put(this.rutaBase+"editar/persona",body);
   }
   deleteEliminarPersonas(body): Observable<any>{
-    return this.http.put(this.rutaBase+"editar/persona",body);
+    let req = new HttpRequest('DELETE', this.rutaBase+'eliminar/persona');
+    let newReq = req.clone({body: body});
+    return this.http.request(newReq);
+   
   }
 }

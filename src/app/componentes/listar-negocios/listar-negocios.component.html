@@ -27,7 +27,7 @@
       <td><button type="button" class="btn btn-primary" (click)="editar(i)">
           Editar
       </button></td>
-      <td><button type="button" class="btn btn-warning" (click)="crearOferta(i)">
+      <td *ngIf="permisos==='administrador'"><button type="button" class="btn btn-warning" (click)="crearOferta(i)">
            Oferta
     </button></td>
     </tr>

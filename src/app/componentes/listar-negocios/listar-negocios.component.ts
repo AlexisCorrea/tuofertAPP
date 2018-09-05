@@ -21,11 +21,19 @@ export class ListarNegociosComponent implements OnInit {
   body= new JsonApiBodyRequestNegocio();
   peticion = new GetRequestNegocio;
   bodyPeticion= new JsonApiBodyRequestGetNegocio();
-  
+  permisos='administrador';
   respuesta:any;
   
   constructor(private servicio_negocio:ServicioNegocioService,private sesion:SesionesService,private enrutador: Router) {
-    
+    try {
+      let rol=sesion.persona[0].rol.toLowerCase();
+      console.log(sesion.persona[0]);
+     if(rol==='super administrador'){
+       this.permisos="super administrador";
+     }
+     } catch (error) {
+       enrutador.navigate(['Bienvenida']);
+     }
    
       this.llenarTabla();
   }
@@ -58,7 +66,7 @@ export class ListarNegociosComponent implements OnInit {
     body.negocio=[negocio];
     // console.log("Eliminando negocio");
     // console.log(negocio)
-    // console.log(body);
+     console.log(body);
     this.servicio_negocio.deleteEliminarNegocio(body).subscribe(data=>{
       // console.log(data);
       this.llenarTabla();

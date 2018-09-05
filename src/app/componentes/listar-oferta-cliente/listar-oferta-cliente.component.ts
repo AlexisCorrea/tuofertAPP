@@ -43,9 +43,9 @@ export class ListarOfertaClienteComponent implements OnInit {
   }
   editar(i){
     var oferta_editar= new RegistrarRequestOferta();
-    oferta_editar=this.ofertas_correctas[i];
+    oferta_editar=this.body_oferta.oferta[i];
     this.servicio_oferta.oferta=oferta_editar;
-    console.log(this.servicio_oferta.oferta.fecha_final);
+    console.log(this.servicio_oferta.oferta);
     this.enrutador.navigate(['EditarOferta']);
   }
   eliminar(id){

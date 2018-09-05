@@ -23,7 +23,7 @@ export class EditarOfertaComponent implements OnInit {
         'detalle': new FormControl(servicio_oferta.oferta.detalle),
         'valor': new  FormControl(servicio_oferta.oferta.valor),
         'descuento': new  FormControl(servicio_oferta.oferta.descuento),
-        'foto': new  FormControl(servicio_oferta.oferta.foto),
+        'foto': new  FormControl(),
         'fecha_inicio': new  FormControl(servicio_oferta.oferta.fecha_inicio),
         'fecha_final': new  FormControl(servicio_oferta.oferta.fecha_final),
         //  'ubicacion': new  FormControl(servicio_oferta.oferta.ubicacion)
@@ -48,7 +48,7 @@ export class EditarOfertaComponent implements OnInit {
     oferta.detalle=this.forma.controls['detalle'].value;
     oferta.valor=this.forma.controls['valor'].value;
     oferta.descuento= descuento == null ? ' ' : descuento;
-    oferta.foto=this.foto;
+    oferta.foto=this.servicio_oferta.oferta.foto;
     oferta.idnegocio=this.servicio_oferta.oferta.idnegocio;
     oferta.fecha_inicio=this.forma.controls['fecha_inicio'].value;
     oferta.fecha_final=this.forma.controls['fecha_final'].value;
@@ -56,7 +56,12 @@ export class EditarOfertaComponent implements OnInit {
     console.log(this.foto);
     this.servicio_oferta.putEditarOferta(body).subscribe(data=>{
       console.log(data);
-      this.enrutador.navigate(['Administrador']);
+      if (this.sesion.persona[0].id==='00') {
+        this.enrutador.navigate(['Super']);
+      }else{
+        this.enrutador.navigate(['Administrador']);
+      }
+      
     })
   }
   upload(event) {

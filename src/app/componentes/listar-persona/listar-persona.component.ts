@@ -26,6 +26,14 @@ export class ListarPersonaComponent implements OnInit {
 
   }
   eliminar(id){
+    this.personaEliminar.id=id;
+    this.personaEliminar.token=this.sesion.persona[0].token;
+    this.bodyEliminar.persona=[this.personaEliminar];
+    console.log(this.bodyEliminar);
+    this.servicio_persona.deleteEliminarPersonas(this.bodyEliminar).subscribe(data=>{
+      console.log(data);
+      this.llenarTabla();
+    });
   }
   llenarTabla(){
     this.servicio_persona.getListarPersonas().subscribe(data=>{
