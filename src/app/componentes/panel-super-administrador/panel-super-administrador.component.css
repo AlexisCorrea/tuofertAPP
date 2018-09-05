@@ -6,6 +6,7 @@
     color: white;
     font-family: 'Arima Madurai', cursive;
     font-weight: bold;
+    
     /* font-family: 'Open Sans Condensed', sans-serif; */
     padding: 3% 3% 0% 3%;
 }
@@ -15,6 +16,7 @@ aside{
      font-weight: bold;
     height: 100%;
     width: 20%;
+    
     float: left;
     /* font-size: 1rem; */
     
@@ -28,12 +30,3 @@ aside{
     border-color: white;
     
 }
-
-.boton2{
-    width: 100%;
-    background: #212529;
-    border-radius: 0;
-   
-    border-color: white;
-}
-

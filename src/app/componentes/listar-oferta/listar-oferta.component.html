@@ -16,7 +16,8 @@
       <td><label >{{ofer.detalle}}</label></td>
       <td><label >{{ofer.valor}}</label></td>
       <td><label >{{ofer.descuento}}</label></td>
-      <td><label >{{ofer.foto}}</label></td>
+      <td><img src={{ofer.foto}} width="200px" height="200px" alt=""></td>
+      <!-- <td><label >{{ofer.foto}}</label></td> -->
       <td><label >{{ofer.fecha_inicio}}</label></td>
       <td><label >{{ofer.fecha_final}}</label></td>
       <td><button (click)="eliminar(ofer.id)" class="btn btn-danger" >Eliminar</button></td>

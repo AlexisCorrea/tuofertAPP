@@ -5,6 +5,7 @@ import {  SesionesService} from "../../services/sesiones.service";
 import { JsonApiBodyRequestNegocio } from "../../../model/jsonApiBodyRequestNegocio";
 import { RegistrarRequestNegocio } from "../../../model/registrarRequestNegocio";
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-editar-negocio',
   templateUrl: './editar-negocio.component.html',
@@ -15,8 +16,9 @@ export class EditarNegocioComponent implements OnInit {
   negocio= new RegistrarRequestNegocio();
   body= new JsonApiBodyRequestNegocio();
   constructor(private servicio_negocio:ServicioNegocioService,
-    private sesiones:SesionesService,
-    private enrutador:Router) { 
+    private sesion:SesionesService,
+    private enrutador:Router,
+    ) { 
     this.forma= new FormGroup({
       
       'nombre': new  FormControl(servicio_negocio.bodynegocio.nombre),
@@ -28,6 +30,12 @@ export class EditarNegocioComponent implements OnInit {
       'tipo': new  FormControl(servicio_negocio.bodynegocio.tipo),
       'ubicacion': new  FormControl(servicio_negocio.bodynegocio.ubicacion)
       });
+      try {
+        console.log(sesion.persona[0]);
+      } catch (error) {
+        alert("error logearse primero");
+        this.enrutador.navigate(['Bienvenida']);
+      }
   }
 
   ngOnInit() {
@@ -42,8 +50,8 @@ export class EditarNegocioComponent implements OnInit {
     this.negocio.telefono=this.forma.controls['telefono'].value;
     this.negocio.tipo=this.forma.controls['tipo'].value;
     this.negocio.ubicacion=this.forma.controls['ubicacion'].value;
-    this.negocio.id_administrador=this.sesiones.persona[0].id;
-    this.negocio.token=this.sesiones.persona[0].token
+    this.negocio.id_administrador=this.servicio_negocio.bodynegocio.id_administrador;
+    this.negocio.token=this.servicio_negocio.bodynegocio.token;
     this.body.negocio=[this.negocio];
     console.log(this.body);
     this.forma.reset();

@@ -31,7 +31,7 @@ export class ListarOfertaComponent implements OnInit {
   body_oferta_Eliminar= new JsonApiBodyRequestDeleteOferta();
   
   constructor(private servicio_oferta:ServicioOfertaService,private servicio_negocio:ServicioNegocioService,private sesion:SesionesService,private enrutador: Router) {
-      this.llegarTabla();
+      this.llenarTabla();
    }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ListarOfertaComponent implements OnInit {
     this.oferta_eliminar.token=this.sesion.persona[0].token;
     this.body_oferta_Eliminar.oferta=[this.oferta_eliminar];
     this.servicio_oferta.deleteEliminarOferta(this.body_oferta_Eliminar).subscribe(data=>{
-      this.llegarTabla();
+      this.llenarTabla();
     })
   }
   editar(i){
@@ -52,7 +52,7 @@ export class ListarOfertaComponent implements OnInit {
     console.log(this.servicio_oferta.oferta.fecha_final);
     this.enrutador.navigate(['EditarOferta']);
   }
-  llegarTabla(){
+  llenarTabla(){
     this.consultar_ids_negocios();
   }
   consultar_ids_negocios(){

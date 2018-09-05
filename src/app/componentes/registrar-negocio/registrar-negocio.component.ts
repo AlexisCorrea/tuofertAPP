@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicioNegocioService} from '../../services/servicio-negocio.service';
 import {JsonApiBodyRequestNegocio} from '../../../model/jsonApiBodyRequestNegocio';
+import {SesionesService} from '../../services/sesiones.service';
+
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
 import { RegistrarRequestNegocio } from "../../../model/registrarRequestNegocio";
 import {FormGroup,FormControl} from '@angular/forms'
@@ -14,8 +17,13 @@ export class RegistrarNegocioComponent implements OnInit {
   body = new JsonApiBodyRequestNegocio();
   negocio= new RegistrarRequestNegocio();
   forma:FormGroup;
+  foto:any;
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  variable
 
-  constructor(private servicio_negocio: ServicioNegocioService) {
+  constructor(private servicio_negocio: ServicioNegocioService,
+    private sesion:SesionesService ,private afStorage: AngularFireStorage) {
     this.forma= new FormGroup({
       'id': new FormControl(this.negocio.id),
       'nombre': new FormControl(this.negocio.nombre),
@@ -28,7 +36,17 @@ export class RegistrarNegocioComponent implements OnInit {
       'ubicacion': new FormControl(this.negocio.ubicacion)
       });
    }
-
+   upload(event) {
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.afStorage.ref(id);
+    this.task = this.ref.put(event.target.files[0]);
+    this.task.then(() => {
+      this.ref.getDownloadURL().subscribe((url) => {
+        this.variable= url;
+      });
+    });
+   
+  }
   ngOnInit() {
 
   }
@@ -37,13 +55,13 @@ export class RegistrarNegocioComponent implements OnInit {
     this.negocio.nombre= this.forma.controls['nombre'].value;
     this.negocio.nit= this.forma.controls['nit'].value;
     this.negocio.correo= this.forma.controls['correo'].value;
-    this.negocio.foto= this.forma.controls['foto'].value;
+    this.negocio.foto=this.variable;
     this.negocio.detalle= this.forma.controls['detalle'].value;
     this.negocio.telefono= this.forma.controls['telefono'].value;
     this.negocio.tipo= this.forma.controls['tipo'].value;
     this.negocio.ubicacion= this.forma.controls['ubicacion'].value;
-    this.negocio.id_administrador= "3";
-    this.negocio.token="654";
+    this.negocio.id_administrador= this.sesion.persona[0].id;
+    this.negocio.token=this.sesion.persona[0].token;
     this.body.negocio=[this.negocio];
     this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
       console.log(data);

@@ -17,7 +17,7 @@ export class RegistrarRequestOferta {
     detalle: string;
     valor: string;
     descuento: string;
-    foto: string;
+    foto: any;
     idnegocio: string;
     fecha_inicio: string;
     fecha_final: string;

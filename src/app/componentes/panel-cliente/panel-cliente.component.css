@@ -1,0 +1,28 @@
+.contenedor{
+    background: #0202029c;
+    width: 80%;
+    height: 100%;
+    float: right;
+    color: white;
+    font-family: 'Arima Madurai', cursive;
+    font-weight: bold;
+    /* font-family: 'Open Sans Condensed', sans-serif; */
+    padding: 3% 3% 0% 3%;
+}
+aside{
+    background: #220d48;
+    font-family: 'Arima Madurai', cursive;
+     font-weight: bold;
+    height: 100%;
+    width: 20%;
+    float: left;
+    /* font-size: 1rem; */
+}
+.boton1{
+    /* margin-top: 70%; */
+    width: 100%;
+    background: #212529;
+    border-radius: 0;
+   height: 6.5%;
+    border-color: white;
+}

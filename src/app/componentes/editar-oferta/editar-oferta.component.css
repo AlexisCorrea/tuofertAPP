@@ -1,6 +1,12 @@
 .contenedor{
-    background: white;
+    background: #0202029c;
     margin-left: 10%;
     margin-right: 10%;
-    padding: 2%;    
+    padding: 2%; 
+    color: white;
+    font-family: 'Arima Madurai', cursive;
+    font-weight: bold;   
+    padding: 3% 3% 2% 3%;
+    height: 100%;
 }
+  

@@ -4,11 +4,10 @@
 
     <button type="button" class="btn btn-primary boton1" (click)="panel='2'">Listar Negocios</button>
 
-    <button type="button" class="btn btn-primary boton1" (click)="panel='3'">Registrar Ofertas</button>
-    
-    <button type="button" class="btn btn-primary boton1" (click)="panel='4'">Listar Ofertas</button>
+     
+    <button type="button" class="btn btn-primary boton1" (click)="panel='3'">Listar Ofertas</button>
 
-    <button type="button" class="btn btn-primary boton1" (click)="panel='5'">Editar Perfil</button>
+    <button type="button" class="btn btn-primary boton1" (click)="panel='4'">Editar Perfil</button>
    
     <button type="button" class="btn btn-primary boton1" (click)="salir()">Salir</button>
 </aside>
@@ -16,7 +15,7 @@
     <!-- <app-registrar *ngSwitchCase="1" ></app-registrar> -->
     <app-registrar-negocio *ngSwitchCase="1" ></app-registrar-negocio>
     <app-listar-negocios *ngSwitchCase="2"></app-listar-negocios>
-    <app-registrar-oferta *ngSwitchCase="3"></app-registrar-oferta>
-    <app-listar-oferta *ngSwitchCase="4"></app-listar-oferta>
-    <app-editar-perfil-administrador *ngSwitchCase="5" ></app-editar-perfil-administrador>
+   
+    <app-listar-oferta *ngSwitchCase="3"></app-listar-oferta>
+    <app-editar-perfil-administrador *ngSwitchCase="4" ></app-editar-perfil-administrador>
 </div>

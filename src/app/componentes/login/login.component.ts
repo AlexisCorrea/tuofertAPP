@@ -12,6 +12,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
+import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit{
   body= new JsonApiBodyLogin;
   
   constructor(private servicioLogin: LoginService,private socialAuthService: AuthService, private enrutador: Router,private sesion:SesionesService ) {
+    console.log("login");
     this.forma= new FormGroup({
     'correo': new FormControl(this.persona.correo),
       'contrasena': new FormControl(this.persona.contrasena)
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit{
   public socialSignIn(socialPlatform : string) {
     let socialPlatformProvider;
     if(socialPlatform == "facebook"){
+      
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     }else if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
@@ -54,20 +57,35 @@ export class LoginComponent implements OnInit{
     this.persona.contrasena=this.forma.controls['contrasena'].value;
     this.body.persona=[this.persona];
     this.servicioLogin.postLogin(this.body).subscribe(data=>{
+      try {
       this.respuesta.persona=[data]
       console.log(this.respuesta.persona[0]);
       this.procesar(this.respuesta.persona[0]);
-    })
+      } catch (error) {
+        this.forma.reset();
+      alert("correo o contraseña incorrecta");
+      }
+    },
+    error=>{
+      this.forma.reset();
+      alert("error interno intente mas tarde");
+    }
+  )
 
   }
   procesar(respuesta){
     console.log(respuesta.persona[0].rol);
-    if (respuesta.persona[0].rol==="administrador") {
+    
+    if (respuesta.persona[0].rol  ==="administrador") {
       this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Administrador']);
-    }if (respuesta.persona[0].rol==="Cliente") {
+    }else if (respuesta.persona[0].rol==="Cliente") {
+      this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Cliente']);
     } else {
+      this.sesion.persona=[respuesta.persona[0]];
+      this.enrutador.navigate(['Super']);
+     
       // this.enrutador.navigate(['Super']);
     }
 

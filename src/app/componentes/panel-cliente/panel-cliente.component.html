@@ -1,3 +1,13 @@
-<p>
-  panel-cliente works!
-</p>
+<aside>
+  <button type="button" class="btn btn-primary boton1" (click)="panel='1'">Ofertas</button>
+
+  <button type="button" class="btn btn-primary boton1" (click)="panel='2'">Editar Perfil</button>
+ 
+  <button type="button" class="btn btn-primary boton1" (click)="salir()">Salir</button>
+</aside>
+<div class="contenedor" [ngSwitch]="panel">
+    <app-listar-oferta-cliente *ngSwitchCase="1"></app-listar-oferta-cliente>
+  <!-- <app-registrar-negocio *ngSwitchCase="2" ></app-registrar-negocio> -->
+ 
+</div>
+

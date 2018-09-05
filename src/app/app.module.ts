@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+//modulos de firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
 
 import { AppComponent } from './app.component';
 import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.component';
@@ -35,6 +39,9 @@ import { ListarPersonaComponent } from './componentes/listar-persona/listar-pers
 import { EditarNegocioComponent } from './componentes/editar-negocio/editar-negocio.component';
 import { EditarPerfilAdministradorComponent } from './componentes/editar-perfil-administrador/editar-perfil-administrador.component';
 import { EditarOfertaComponent } from './componentes/editar-oferta/editar-oferta.component';
+import { ListarOfertaClienteComponent } from './componentes/listar-oferta-cliente/listar-oferta-cliente.component';
+import { PanelSuperAdministradorComponent } from './componentes/panel-super-administrador/panel-super-administrador.component';
+
 
 
 // Configs 
@@ -69,7 +76,9 @@ export function getAuthServiceConfigs() {
     ListarPersonaComponent,
     EditarNegocioComponent,
     EditarPerfilAdministradorComponent,
-    EditarOfertaComponent
+    EditarOfertaComponent,
+    ListarOfertaClienteComponent,
+    PanelSuperAdministradorComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +86,16 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     ReactiveFormsModule,
     routing,
-    SocialLoginModule
+    SocialLoginModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCt57rJQgRI9J9FT4BdOqwfldmUea1JU0M",
+    authDomain: "imgtuofertapp.firebaseapp.com",
+    databaseURL: "https://imgtuofertapp.firebaseio.com",
+    projectId: "imgtuofertapp",
+    storageBucket: "imgtuofertapp.appspot.com",
+    messagingSenderId: "963441841256"
+    }),
+    AngularFireStorageModule
   ],
   providers: [
     ServicioNegocioService,

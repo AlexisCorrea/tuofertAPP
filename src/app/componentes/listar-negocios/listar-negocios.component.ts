@@ -32,6 +32,10 @@ export class ListarNegociosComponent implements OnInit {
 
   ngOnInit() {
   }
+  crearOferta(i){
+    this.servicio_negocio.bodynegocio=this.body.negocio[i];
+    this.enrutador.navigate(['RegistrarOferta']);
+  }
   llenarTabla(){
     this.peticion.tipoConsulta=this.sesion.persona[0].id;
     this.peticion.parametro="todo";

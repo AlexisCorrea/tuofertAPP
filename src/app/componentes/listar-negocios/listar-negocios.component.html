@@ -1,6 +1,6 @@
 <table class="table table-striped">
   <thead class="thead-dark">
-    <th scope="col">ID</th>
+    
     <th scope="col">Nombre</th>
     <th scope="col">Nit</th>
     <th scope="col">Correo</th>
@@ -11,13 +11,14 @@
     <th scope="col">Ubicacion</th>
     <th scope="col">Eliminar</th>
     <th scope="col">Editar</th>
+    <th scope="col">Crear Oferta</th>
   </thead>
   <tbody>
     <tr *ngFor="let negocio of body.negocio; let i = index">
       <td><label >{{negocio.nombre}}</label></td>
       <td><label >{{negocio.nit}}</label></td>
       <td><label >{{negocio.correo}}</label></td>
-      <td><label >{{negocio.foto}}</label></td>
+      <td><img src="{{negocio.foto}}" height="200px" width="200px" alt=""></td>
       <td><label >{{negocio.detalle}}</label></td>
       <td><label >{{negocio.tipo}}</label></td>
       <td><label >{{negocio.telefono}}</label></td>
@@ -26,6 +27,9 @@
       <td><button type="button" class="btn btn-primary" (click)="editar(i)">
           Editar
       </button></td>
+      <td><button type="button" class="btn btn-warning" (click)="crearOferta(i)">
+           Oferta
+    </button></td>
     </tr>
   </tbody>
 </table>

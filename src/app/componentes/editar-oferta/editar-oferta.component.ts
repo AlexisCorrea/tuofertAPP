@@ -13,8 +13,8 @@ import {ServicioOfertaService} from '../../services/servicio-oferta.service';
 export class EditarOfertaComponent implements OnInit {
   forma:FormGroup;
 
-
-  constructor(private sesiones:SesionesService,
+  foto;
+  constructor(private sesion:SesionesService,
     private enrutador:Router,
     private servicio_oferta:ServicioOfertaService) {
       console.log(servicio_oferta.oferta.idnegocio);
@@ -26,8 +26,14 @@ export class EditarOfertaComponent implements OnInit {
         'foto': new  FormControl(servicio_oferta.oferta.foto),
         'fecha_inicio': new  FormControl(servicio_oferta.oferta.fecha_inicio),
         'fecha_final': new  FormControl(servicio_oferta.oferta.fecha_final),
-        // 'ubicacion': new  FormControl(servicio_oferta.oferta.ubicacion)
+        //  'ubicacion': new  FormControl(servicio_oferta.oferta.ubicacion)
         });
+        try {
+          console.log(sesion.persona[0]);
+        } catch (error) {
+          alert("error logearse primero");
+          this.enrutador.navigate(['Bienvenida']);
+        }
      }
 
   ngOnInit() {
@@ -42,15 +48,31 @@ export class EditarOfertaComponent implements OnInit {
     oferta.detalle=this.forma.controls['detalle'].value;
     oferta.valor=this.forma.controls['valor'].value;
     oferta.descuento= descuento == null ? ' ' : descuento;
-    oferta.foto=this.forma.controls['foto'].value;
+    oferta.foto=this.foto;
     oferta.idnegocio=this.servicio_oferta.oferta.idnegocio;
     oferta.fecha_inicio=this.forma.controls['fecha_inicio'].value;
     oferta.fecha_final=this.forma.controls['fecha_final'].value;
     body.oferta=[oferta];
+    console.log(this.foto);
     this.servicio_oferta.putEditarOferta(body).subscribe(data=>{
       console.log(data);
       this.enrutador.navigate(['Administrador']);
     })
   }
+  upload(event) {
+  //  this.foto=event.target.files[0];  
+  this.readThis(event.target);
+ 
+  }
+  readThis(valor:any){
+    var file:File=valor.files[0];
+    var myReader:FileReader= new FileReader();
+    myReader.onload=(e)=>{
+      this.foto=myReader.result;
 
+    }
+    myReader.readAsDataURL(file);
+    
+  }
+  
 }

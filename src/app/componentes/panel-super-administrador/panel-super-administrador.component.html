@@ -1,0 +1,14 @@
+<aside>
+    <button type="button" class="btn btn-primary boton1" (click)="panel='1'">Listar Negocio</button>
+
+    <button type="button" class="btn btn-primary boton1" (click)="panel='2'">Listar Ofertas</button>
+
+    <button type="button" class="btn btn-primary boton1" (click)="panel='3'">Listar Personas</button>
+   
+    <button type="button" class="btn btn-primary boton1" (click)="salir()">Salir</button>
+</aside>
+<div class="contenedor" [ngSwitch]="panel">
+    <app-listar-negocios *ngSwitchCase="1" ></app-listar-negocios>
+    <app-listar-oferta-cliente *ngSwitchCase="2"></app-listar-oferta-cliente>
+    <app-listar-persona *ngSwitchCase="3"></app-listar-persona> 
+</div>

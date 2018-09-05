@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import {JsonApiBodyRequestNegocio} from '../../model/jsonApiBodyRequestNegocio';
-import {JsonApiBodyRequestGetNegocio} from '../../model/jsonApiBodyRequestGetNegocio';
-import {JsonApiBodyRequestDeleteNegocio} from '../../model/jsonApiBodyRequestDeleteNegocio';
 
 import { HttpClient,HttpRequest  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {RegistrarRequestNegocio} from '../../model/registrarRequestNegocio';
+import { registerLocaleData } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +29,5 @@ export class ServicioNegocioService {
     return this.http.request(newReq);
    
   }
+    
 }

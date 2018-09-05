@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl} from '@angular/forms'
+import {FormGroup,FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import {JsonApiBodyRequestPersona} from '../../../model/jsonApiBodyRequestPersona';
 import {RegistrarRequestPersona } from "../../../model/registrarRequestPersona";
 import { ServicioPersonaService } from "../../services/servicio-persona.service";
@@ -12,7 +13,8 @@ export class RegistrarComponent implements OnInit {
   body= new JsonApiBodyRequestPersona();
   persona= new RegistrarRequestPersona();
   forma:FormGroup;
-  constructor(private servicio_persona:ServicioPersonaService) {
+  constructor(private servicio_persona:ServicioPersonaService,
+  private enrutador:Router) {
     this.forma= new FormGroup({
       'nombre': new FormControl(""),
       'apellidos': new FormControl(""),
@@ -43,8 +45,7 @@ export class RegistrarComponent implements OnInit {
     this.body.persona=[this.persona];
     console.log(this.body);
     this.servicio_persona.postRegistrarPersona(this.body).subscribe(data=>{
-      console.log(data);
+      this.enrutador.navigate(['Bienvenida']);
     })
-
   }
 }
