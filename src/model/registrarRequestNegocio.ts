@@ -23,6 +23,8 @@ export class RegistrarRequestNegocio {
     ubicacion: string;
     id_administrador: string;
     token:string;
+    latitud:string;
+    longitud:string;
     constructor(){
         
     }

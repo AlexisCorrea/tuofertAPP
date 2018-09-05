@@ -1,5 +1,5 @@
 <div class="contenedor">
-    <form [(formGroup)]="forma" (ngSubmit)="guardar()">
+    <form [(formGroup)]="forma" (ngSubmit)="guardar(valor1.value, valor2.value)">
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="inputEmail4">Nombre</label>
@@ -11,9 +11,11 @@
           </div>
           <div class="form-group col-md-12">
              <label for="inputPassword4">Detalle</label>
-             <input formControlName="detalle" name="datele" type="text" class="form-control" id="inputPassword4" >
+             <input formControlName="detalle" name="datele" type="text" class="form-control" id="inputEmail4" >
           </div>
         </div>
+        <input #valor1 formControlName="latitud" name="latitud" type="hidden" id="txtLatitud" >
+        <input #valor2 formControlName="longitud" name="longitud" type="hidden" id="txtLongitud" >
         <div class="form-row">
             <div class="form-group col-md-12">
               <label for="inputEmail4">correo</label>
@@ -21,7 +23,7 @@
             </div>
             <div class="form-group col-md-12">
               <label for="inputPassword4">ubicacion</label>
-              <input formControlName="ubicacion" name="ubicacion" type="text" class="form-control" id="inputPassword4" >
+              <input onchange="coordenadas()" formControlName="ubicacion" name="ubicacion" type="text" class="form-control" id="ubicacion" >
             </div>
             <div class="form-group col-md-12">
                 <label for="inputPassword4">telefono</label>

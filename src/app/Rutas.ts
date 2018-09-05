@@ -8,9 +8,11 @@ import { PanelSuperAdministradorComponent } from "../app/componentes/panel-super
 import { ListarPersonaComponent } from "../app/componentes/listar-persona/listar-persona.component";
 import {PanelAdministradorComponent} from '../app/componentes/panel-administrador/panel-administrador.component';
 import {RegistrarOfertaComponent} from '../app/componentes/registrar-oferta/registrar-oferta.component';
+import {MapaComponent} from '../app/componentes/mapa/mapa.component';
+
 
 const rutas: Routes = [
-  {path: '', component: BienvenidaComponent, pathMatch: 'full' },
+  {path: '', component: MapaComponent, pathMatch: 'full' },
   {
     path: 'Bienvenida',
     component: BienvenidaComponent

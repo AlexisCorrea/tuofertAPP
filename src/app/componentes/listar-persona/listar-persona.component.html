@@ -20,8 +20,8 @@
             <td><label >{{persona.genero}}</label></td>
             <td><label >{{persona.rol}}</label></td>
             <td><label >{{persona.ciudad}}</label></td>
-            <td><button class="btn btn-danger">Eliminar</button></td>
-            <td><button class="btn btn-primary">Editar</button></td>
+            <td><button (click)="editar(i)" class="btn btn-danger">Eliminar</button></td>
+            <td><button (click)="eliminar(ofer.id)" class="btn btn-primary">Editar</button></td>
           </tr>
         </tbody>
       </table>

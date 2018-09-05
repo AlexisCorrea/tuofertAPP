@@ -33,6 +33,8 @@ export class RegistrarNegocioComponent implements OnInit {
       'detalle': new FormControl(this.negocio.detalle),
       'telefono': new FormControl(this.negocio.telefono),
       'tipo': new FormControl(this.negocio.tipo),
+      'latitud': new FormControl(this.negocio.tipo),
+      'longitud': new FormControl(this.negocio.tipo),
       'ubicacion': new FormControl(this.negocio.ubicacion)
       });
    }
@@ -43,6 +45,7 @@ export class RegistrarNegocioComponent implements OnInit {
     this.task.then(() => {
       this.ref.getDownloadURL().subscribe((url) => {
         this.variable= url;
+        console.log(this.variable);
       });
     });
    
@@ -50,7 +53,8 @@ export class RegistrarNegocioComponent implements OnInit {
   ngOnInit() {
 
   }
-  guardar(){
+ 
+  guardar(latitud: string, longitud: string){
     this.negocio.id="";
     this.negocio.nombre= this.forma.controls['nombre'].value;
     this.negocio.nit= this.forma.controls['nit'].value;
@@ -60,13 +64,16 @@ export class RegistrarNegocioComponent implements OnInit {
     this.negocio.telefono= this.forma.controls['telefono'].value;
     this.negocio.tipo= this.forma.controls['tipo'].value;
     this.negocio.ubicacion= this.forma.controls['ubicacion'].value;
+    this.negocio.latitud=latitud;
+    this.negocio.longitud=longitud;
     this.negocio.id_administrador= this.sesion.persona[0].id;
     this.negocio.token=this.sesion.persona[0].token;
     this.body.negocio=[this.negocio];
-    this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
-      console.log(data);
-      this.forma.reset();
-    })
+   console.log(this.body);
+    // this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
+    //   console.log(data);
+    //   this.forma.reset();
+    // })
   }
 
 }

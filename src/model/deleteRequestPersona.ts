@@ -11,7 +11,10 @@
  */
 
 
-export interface DeleteRequestPersona {
+export class DeleteRequestPersona {
     id: string;
     token: string;
+    constructor(){
+        
+    }
 }

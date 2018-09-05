@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+//google map
+import { AgmCoreModule } from "@agm/core";
+
 //modulos de firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -41,6 +44,7 @@ import { EditarPerfilAdministradorComponent } from './componentes/editar-perfil-
 import { EditarOfertaComponent } from './componentes/editar-oferta/editar-oferta.component';
 import { ListarOfertaClienteComponent } from './componentes/listar-oferta-cliente/listar-oferta-cliente.component';
 import { PanelSuperAdministradorComponent } from './componentes/panel-super-administrador/panel-super-administrador.component';
+import { MapaComponent } from './componentes/mapa/mapa.component';
 
 
 
@@ -79,6 +83,7 @@ export function getAuthServiceConfigs() {
     EditarOfertaComponent,
     ListarOfertaClienteComponent,
     PanelSuperAdministradorComponent,
+    MapaComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,10 @@ export function getAuthServiceConfigs() {
     storageBucket: "imgtuofertapp.appspot.com",
     messagingSenderId: "963441841256"
     }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA-HXVa2jtkGfKtIJwisxgC46RaWqC1xuI'
+    })
   ],
   providers: [
     ServicioNegocioService,

@@ -23,7 +23,7 @@
         <td><label >{{ofer.fecha_final}}</label></td>
         <td><button (click)="eliminar(ofer.id)" class="btn btn-primary" >Ubicar en el mapa</button></td>
        
-        <td *ngIf="permisos==='super administrador'"><button (click)="editar(ofer.id)" class="btn btn-warning" >Editar</button></td>
+        <td *ngIf="permisos==='super administrador'"><button (click)="editar(i)" class="btn btn-warning" >Editar</button></td>
        
         <td *ngIf="permisos==='super administrador'"><button (click)="eliminar(ofer.id)" class="btn btn-danger" >Eliminar</button></td>
         </tr>

@@ -12,6 +12,9 @@
 import { DeleteRequestPersona } from './deleteRequestPersona';
 
 
-export interface JsonApiBodyRequestDeletePersona {
+export class JsonApiBodyRequestDeletePersona {
     persona: Array<DeleteRequestPersona>;
+    constructor(){
+        
+    }
 }
