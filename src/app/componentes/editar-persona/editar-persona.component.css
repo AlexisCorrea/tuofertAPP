@@ -1,0 +1,9 @@
+.contenedor{
+    background: #0202029c;
+    height: 100%;
+    margin: 0% 8% 0% 8%;
+    padding: 1% 2% 0% 2%;
+    color: white;
+    font-family: 'Arima Madurai', cursive;
+    /* font-family: 'Open Sans Condensed', sans-serif; */
+}

@@ -76,13 +76,13 @@ export class LoginComponent implements OnInit{
   procesar(respuesta){
     console.log(respuesta.persona[0].rol);
     
-    if (respuesta.persona[0].rol  ==="administrador") {
+    if (respuesta.persona[0].rol  ==="administrador" || respuesta.persona[0].rol==="Administrador") {
       this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Administrador']);
-    }else if (respuesta.persona[0].rol==="Cliente") {
+    }else if (respuesta.persona[0].rol==="Cliente" || respuesta.persona[0].rol==="cliente") {
       this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Cliente']);
-    } else {
+    } else{
       this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Super']);
      

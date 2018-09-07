@@ -13,3 +13,9 @@
     color: #1d2124;
     margin-bottom: 4%;
 }
+.fondo{
+    background-image: url('../../../assets/img/fondo.jpg');
+    background-size: cover;
+    height: 100vh;
+    
+  }

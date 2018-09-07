@@ -31,6 +31,7 @@ export class RegistrarOfertaComponent implements OnInit {
       'valor': new FormControl(""),
       'descuento': new FormControl(""),
       'foto': new FormControl(""),
+      'tipo': new FormControl(""),
       'fecha_inicio': new FormControl(""),
       'fecha_final': new FormControl("")
     })
@@ -57,6 +58,7 @@ export class RegistrarOfertaComponent implements OnInit {
     this.oferta.foto=this.variable;
     this.oferta.fecha_inicio=this.forma.controls['fecha_inicio'].value;
     this.oferta.fecha_final=this.forma.controls['fecha_final'].value;
+    this.oferta.tipo=this.forma.controls['tipo'].value;
     this.oferta.idnegocio=this.servicio_negocio.bodynegocio.id;
     this.bodyOferta.oferta=[this.oferta];
     console.log("este el body que se envia");

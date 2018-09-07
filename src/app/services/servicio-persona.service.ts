@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {JsonApiBodyRequestPersona} from '../../model/jsonApiBodyRequestPersona';
+import {RegistrarRequestPersona} from '../../model/registrarRequestPersona';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioPersonaService {
   rutaBase = 'http://localhost:8050/orquestador/';
+  perosonaEditar = new RegistrarRequestPersona();
   constructor(private http: HttpClient) { }
 
   postRegistrarPersona(body):Observable<any> {

@@ -1,12 +1,54 @@
 <div class="contenedor">
+   
+  <div class="row">
+      <div class="form-group col-md-6">
+          <label for="inputState">Tipo de negocio</label>
+          <select (change)="filtroNegocio()" class="form-control">
+            <option selected>Selecionar..</option>
+            <option>Restaurante</option>
+                  <option>Bar</option>
+                  <option>Mercado</option>
+                  <option>Almacen</option>
+                  <option>Cine</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputState">Tipo de oferta</label>
+            <select (change)="filtroOferta()"  class="form-control">
+              <option selected>Selecionar..</option>
+              <option>Promocion</option>
+              <option>Descuento</option>
+            </select>
+          </div>
   <agm-map [latitude]="lat" [longitude]="lag">
-      <agm-marker [latitude]="lat" [longitude]="lag">
+      <agm-marker *ngFor="let negocio of bodyNegocio.negocio; let i = index" 
+      [latitude]="+negocio.latitud" [longitude]="+negocio.longitud">
         <agm-info-window>
-          <strong>Titulo</strong>
-          <p>informacion del parrafo</p>
-          <button>Editar</button>
-          <button>Borrar</button>
+          <strong style="color:black">{{negocio.nombre}}</strong>
+          <p style="color:black">{{negocio.detalle}}</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="consultarOfertas()">Ver Ofertas</button>
+
         </agm-info-window>
       </agm-marker>
   </agm-map>
 </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   <p style="color:black">{{respuesta}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>

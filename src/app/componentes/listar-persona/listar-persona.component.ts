@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {JsonApiBodyRequestPersona} from '../../../model/jsonApiBodyRequestPersona';
 import {ServicioPersonaService} from '../../services/servicio-persona.service';
+import { Router } from '@angular/router';
 import { SesionesService } from '../../services/sesiones.service';
 import {DeleteRequestPersona} from '../../../model/deleteRequestPersona';
 import {JsonApiBodyRequestDeletePersona} from '../../../model/jsonApiBodyRequestDeletePersona';
@@ -15,7 +16,9 @@ export class ListarPersonaComponent implements OnInit {
   personaEliminar= new DeleteRequestPersona();
   bodyEliminar = new JsonApiBodyRequestDeletePersona();
   respuesta:any;
-  constructor(private servicio_persona:ServicioPersonaService,private sesion:SesionesService) {
+  constructor(private servicio_persona:ServicioPersonaService,
+    private sesion:SesionesService,
+    private enrutador:Router) {
     this.llenarTabla();
    }
 
@@ -23,6 +26,9 @@ export class ListarPersonaComponent implements OnInit {
 
   }
   editar(index){
+    console.log("estamos en editar");
+    this.servicio_persona.perosonaEditar=this.personas.persona[index];
+    this.enrutador.navigate(['EditarPersona']);
 
   }
   eliminar(id){

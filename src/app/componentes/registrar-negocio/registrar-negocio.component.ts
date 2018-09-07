@@ -33,8 +33,8 @@ export class RegistrarNegocioComponent implements OnInit {
       'detalle': new FormControl(this.negocio.detalle),
       'telefono': new FormControl(this.negocio.telefono),
       'tipo': new FormControl(this.negocio.tipo),
-      'latitud': new FormControl(this.negocio.tipo),
-      'longitud': new FormControl(this.negocio.tipo),
+      'latitud': new FormControl(),
+      'longitud': new FormControl(),
       'ubicacion': new FormControl(this.negocio.ubicacion)
       });
    }
@@ -70,10 +70,11 @@ export class RegistrarNegocioComponent implements OnInit {
     this.negocio.token=this.sesion.persona[0].token;
     this.body.negocio=[this.negocio];
    console.log(this.body);
-    // this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
-    //   console.log(data);
-    //   this.forma.reset();
-    // })
+    this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data=>{
+      console.log(data);
+      this.forma.reset();
+      
+    })
   }
 
 }

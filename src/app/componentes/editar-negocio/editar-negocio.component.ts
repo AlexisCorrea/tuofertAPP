@@ -42,7 +42,8 @@ export class EditarNegocioComponent implements OnInit {
 
   ngOnInit() {
   }
-  guardar(parametro,parametro2){
+  guardar(valor1:string,valor2:string){
+    
     this.negocio.id=this.servicio_negocio.bodynegocio.id
     this.negocio.nombre=this.forma.controls['nombre'].value;
     this.negocio.nit=this.forma.controls['nit'].value;
@@ -53,15 +54,22 @@ export class EditarNegocioComponent implements OnInit {
     this.negocio.tipo=this.forma.controls['tipo'].value;
     this.negocio.ubicacion=this.forma.controls['ubicacion'].value;
     this.negocio.id_administrador=this.servicio_negocio.bodynegocio.id_administrador;
-    this.negocio.latitud=parametro;
-    this.negocio.longitud=parametro2;
+    this.negocio.latitud=valor1==""?this.servicio_negocio.bodynegocio.latitud:valor1;
+    this.negocio.longitud=valor2==""?this.servicio_negocio.bodynegocio.latitud:valor2;
     this.negocio.token=this.servicio_negocio.bodynegocio.token;
     this.body.negocio=[this.negocio];
     console.log(this.body);
     this.forma.reset();
     this.servicio_negocio.putEditarNegocio(this.body).subscribe(data=>{
       console.log(data);
+      this.servicio_negocio.bodynegocio=null;
+      if (this.sesion.persona[0].id==="00") {
+        this.enrutador.navigate(['Super']);
+      }
       this.enrutador.navigate(['Administrador']);
+    },
+    error=>{
+      console.log(error);
     })
   }
 
