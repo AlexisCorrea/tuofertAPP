@@ -1,6 +1,6 @@
 
     <table class="table table-striped">
-        <thead class="thead-dark">
+        <thead class="thead-dark headTable">
           <th scope="col">Nombre</th>
           <th scope="col">Apellidos</th>
           <th scope="col">Correo</th>
@@ -12,7 +12,7 @@
           <th scope="col">Eliminar</th>
         </thead>
         <tbody>
-          <tr *ngFor="let persona of personas.persona; let i = index">
+          <tr class="headTable" *ngFor="let persona of personas.persona; let i = index">
             <td><label >{{persona.nombre}}</label></td>
             <td><label >{{persona.apellidos}}</label></td>
             <td><label >{{persona.correo}}</label></td>

@@ -1,0 +1,27 @@
+html,body{
+    height: 100%;
+    overflow: hidden;
+} 
+
+.contenedor{
+    overflow-y: auto;
+}
+
+.contenedorTabla{
+    width: 100%
+}
+
+.headTable, .headTable > td {
+    padding: .4% !important;
+    vertical-align: middle !important;
+    width: 10%;
+}
+
+.table{
+    margin-bottom: 10%;
+}
+
+.imgLista{
+    width: 100%;
+    border-radius: 50%;
+}

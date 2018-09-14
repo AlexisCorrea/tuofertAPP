@@ -1,4 +1,4 @@
-<form class="contenedor" [(formGroup)]="forma" (ngSubmit)="logiar()">
+<form class="contenedor" [(formGroup)]="forma" (ngSubmit)="logear()">
   <label for="" id="login-label">Login</label>
   <div class="form-group">
     <label for="exampleInputEmail1">Correo</label>
@@ -16,3 +16,6 @@
 <button class="btn btn-primary " (click)="socialSignIn('facebook')">Facebook</button>
 <br>
 <a class="p-2" style="color:white" routerLink="/Registro">¿No tienes cuenta? Regístrate...</a>
+<div *ngIf="error" class="alert alert-danger">
+  <strong>Error!</strong>{{Mensaje}}
+</div>

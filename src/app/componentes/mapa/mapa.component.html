@@ -1,54 +1,153 @@
 <div class="contenedor">
-   
-  <div class="row">
-      <div class="form-group col-md-6">
-          <label for="inputState">Tipo de negocio</label>
-          <select (change)="filtroNegocio()" class="form-control">
-            <option selected>Selecionar..</option>
-            <option>Restaurante</option>
-                  <option>Bar</option>
-                  <option>Mercado</option>
-                  <option>Almacen</option>
-                  <option>Cine</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputState">Tipo de oferta</label>
-            <select (change)="filtroOferta()"  class="form-control">
-              <option selected>Selecionar..</option>
-              <option>Promocion</option>
-              <option>Descuento</option>
-            </select>
-          </div>
-  <agm-map [latitude]="lat" [longitude]="lag">
-      <agm-marker *ngFor="let negocio of bodyNegocio.negocio; let i = index" 
-      [latitude]="+negocio.latitud" [longitude]="+negocio.longitud">
-        <agm-info-window>
-          <strong style="color:black">{{negocio.nombre}}</strong>
-          <p style="color:black">{{negocio.detalle}}</p>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="consultarOfertas()">Ver Ofertas</button>
+  <form [(formGroup)]="forma" (ngSubmit)="filtrar()">
+    <label for="">Tipo de Negocio</label>
+    <div class="row">
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div class="com-md-3">
+        <input formControlName="tipoNegocio1" name="tipoNegocio1" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Bar
+        </label>
+      </div>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div class="com-md-3"><input formControlName="tipoNegocio2" name="tipoNegocio2" class="form-check-input" type="checkbox"
+          value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Mercado
+        </label></div>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div class="com-md-3"><input formControlName="tipoNegocio3" name="tipoNegocio3" class="form-check-input" type="checkbox"
+          value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Almacen
+        </label></div>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div class="com-md-3"><input formControlName="tipoNegocio4" name="tipoNegocio4" class="form-check-input" type="checkbox"
+          value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Cine
+        </label></div>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <div class="com-md-3"><input formControlName="tipoNegocio5" name="tipoNegocio5" class="form-check-input" type="checkbox"
+          value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Restaurante
+        </label></div>
+    </div>
+    <div>
+      <label for="inputState">Tipo de oferta</label>
+      <select formControlName="tipoOferta" name="tipoOferta"  class="form-control">
 
-        </agm-info-window>
-      </agm-marker>
+        <option>Promocion</option>
+        <option>Descuento</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="boton">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </div>
+      <div class="boton">
+        <button type="submit" class="btn btn-primary" (click)="llenarTabla()">Todas las ofertas</button>
+      </div>
+    </div>
+  </form>
+  <agm-map [latitude]="lat" [longitude]="lag" [zoom]="15">
+    <agm-marker iconUrl="../../../assets/img/marcador.png" *ngFor="let negocio of bodyNegocio.negocio; let i = index"
+      [latitude]="+negocio.latitud" [longitude]="+negocio.longitud">
+      <agm-info-window>
+        <img src="{{negocio.foto}}" width="50px" height="50px" alt="">
+        <strong style="color:black">{{negocio.nombre}}</strong>
+        <p style="color:black">{{negocio.detalle}}</p>
+        <button (click)="consultarOfertas(negocio.id)" stype="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#exampleModal">Ver Ofertas</button>
+
+      </agm-info-window>
+    </agm-marker>
   </agm-map>
 </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                   <p style="color:black">{{respuesta}}</p>
-                  </div>
-                  <div class="modal-footer">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let ofertas of bodyOferta.oferta; let i = index">
+          <div class="row">
+            <div class="col-md-4 imagen">
+              <img src="{{ofertas.foto}}" width="60px" height="60px" alt="">
+            </div>
+            <div class="col-md-7">
+              <label style="color:black" for="formGroupExampleInput">Producto</label>
+              <h5 style="color:black">{{ofertas.producto}}</h5>
+              <!-- <input disabled value="{{ofertas.producto}}" type="text" class="form-control" id="formGroupExampleInput"
+                placeholder="Example input"> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label style="color:black" for="formGroupExampleInput2">Detalle</label>
+              <h5 style="color:black">{{ofertas.detalle}}</h5>
+              <!-- <textarea disabled value="{{ofertas.detalle}}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label style="color:black" for="formGroupExampleInput2">Fecha de inicio</label>
+              <h5 style="color:black">{{ofertas.fecha_inicio}}</h5>
+
+              <!-- <input disabled value="{{ofertas.fecha_inicio}}" type="date" class="form-control" id="formGroupExampleInput"> -->
+            </div>
+            <div class="col-md-6">
+              <label style="color:black" for="formGroupExampleInput2">Fecha de fin</label>
+              <h5 style="color:black">{{ofertas.fecha_final}}</h5>
+              <!-- <input disabled value="{{ofertas.fecha_final}}" type="date" class="form-control" id="formGroupExampleInput"> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label style="color:black" for="formGroupExampleInput2">Valor</label>
+              <h5 style="color:black">{{ofertas.valor}}</h5>
+              <!-- <input disabled value="{{ofertas.valor}}" type="text" class="form-control" id="formGroupExampleInput"> -->
+            </div>
+            <div class="col-md-4">
+              <label style="color:black" for="formGroupExampleInput2">Descuento</label>
+              <h5 style="color:black">{{ofertas.descuento}}</h5>
+              <!-- <input disabled value="{{ofertas.descuento}}" type="text" class="form-control" id="formGroupExampleInput"> -->
+            </div>
+          </div>
+          <hr>
+        </div>
+
+      </div>
+      <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </div> -->
+    </div>
+  </div>
+</div>

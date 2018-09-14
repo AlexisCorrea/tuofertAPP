@@ -1,5 +1,7 @@
-<table class="table table-striped">
-    <thead class="thead-dark">
+
+<div class="contenedorTabla">
+  <table class="table table-striped">
+    <thead class="thead-dark headTable">
       <th scope="col">Producto</th>
       <th scope="col">Detalle</th>
       <th scope="col">Valor</th>
@@ -12,12 +14,12 @@
       <th *ngIf="permisos==='super administrador'" scope="col" >Eliminar</th>
     </thead>
     <tbody>
-      <tr *ngFor="let ofer of body_oferta.oferta; let i = index">
+      <tr class="headTable" *ngFor="let ofer of body_oferta.oferta; let i = index">
         <td><label >{{ofer.producto}}</label></td>
         <td><label >{{ofer.detalle}}</label></td>
         <td><label >{{ofer.valor}}</label></td>
         <td><label >{{ofer.descuento}}</label></td>
-        <td><img src={{ofer.foto}} height="200px" width="200px" alt=""></td>
+        <td><img class="imgLista" src={{ofer.foto}}  alt=""></td>
         <!-- <td><label >{{ofer.foto}}</label></td> -->
         <td><label >{{ofer.fecha_inicio}}</label></td>
         <td><label >{{ofer.fecha_final}}</label></td>
@@ -29,3 +31,4 @@
         </tr>
     </tbody>
   </table>
+</div>

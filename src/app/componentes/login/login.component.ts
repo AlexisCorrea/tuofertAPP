@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit{
   forma:FormGroup;
   persona=new LoginRequest;
   body= new JsonApiBodyLogin;
+  error:boolean=false;
+  Mensaje:any;
   
   constructor(private servicioLogin: LoginService,private socialAuthService: AuthService, private enrutador: Router,private sesion:SesionesService ) {
     console.log("login");
@@ -47,35 +49,45 @@ export class LoginComponent implements OnInit{
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
+        this.enrutador.navigate(['Cliente']);
+      },
+      err=>{
+        console.log(err);
       }
     );
   }
   
 
-  logiar(){
+  logear(){
     this.persona.correo=this.forma.controls['correo'].value;
     this.persona.contrasena=this.forma.controls['contrasena'].value;
     this.body.persona=[this.persona];
     this.servicioLogin.postLogin(this.body).subscribe(data=>{
       try {
+
       this.respuesta.persona=[data]
-      console.log(this.respuesta.persona[0]);
+      
       this.procesar(this.respuesta.persona[0]);
       } catch (error) {
+        this.error=true;
+        this.Mensaje="Correo o contraseña no validos";
         this.forma.reset();
-      alert("correo o contraseña incorrecta");
+        
       }
     },
     error=>{
-      this.forma.reset();
-      alert("error interno intente mas tarde");
+      error=true;
+      this.Mensaje="Error al momento de logearse";
     }
   )
 
   }
   procesar(respuesta){
     console.log(respuesta.persona[0].rol);
-    
+    if (respuesta.persona[0].estado==="INACTIVO") {
+      this.error=true;
+      this.Mensaje="Correo o contraseña incorrecta";
+    }
     if (respuesta.persona[0].rol  ==="administrador" || respuesta.persona[0].rol==="Administrador") {
       this.sesion.persona=[respuesta.persona[0]];
       this.enrutador.navigate(['Administrador']);

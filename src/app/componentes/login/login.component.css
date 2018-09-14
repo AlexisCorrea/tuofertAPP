@@ -25,3 +25,6 @@ form.contenedor {
     margin-top: 2%;
     font-weight: 500;
   }
+  .alertPosition{
+    position: relative;
+  }

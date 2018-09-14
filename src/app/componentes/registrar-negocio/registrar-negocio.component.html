@@ -36,7 +36,7 @@
             <div class="form-group col-md-6">
                 <label for="inputState">Tipo de negocio</label>
                 <select formControlName="tipo" name="tipo" id="inputState" class="form-control">
-                  <option selected>Selecionar..</option>
+                 
                   <option>Restaurante</option>
                   <option>Bar</option>
                   <option>Mercado</option>
@@ -52,4 +52,10 @@
 
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
+      <div *ngIf="error" class="alert alert-danger">
+          <strong>Error!</strong>{{Mensaje}}
+        </div>
+        <div *ngIf="exito" class="alert alert-success">
+            <strong>Success!</strong> Registro exitoso
+          </div>
 </div>

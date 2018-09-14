@@ -27,5 +27,8 @@ export class ServicioOfertaService {
     let newReq = req.clone({body: body});
     return this.http.request(newReq);
   }
+  getOfertasByIDNegocio(id):Observable<any>{
+    return this.http.get("http://localhost:8070/ofertas/listar/"+id);
+  }
   
 }

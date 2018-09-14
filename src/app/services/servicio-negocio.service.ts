@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient,HttpRequest  } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import {RegistrarRequestNegocio} from '../../model/registrarRequestNegocio';
 import { registerLocaleData } from '@angular/common';
 
@@ -29,5 +29,11 @@ export class ServicioNegocioService {
     return this.http.request(newReq);
    
   }
+  getByTipo(tipo):Observable<any>{
+    return this.http.get('http://localhost:8091/negocios/listar/'+tipo);
+  }
     
+  getByID(id):Observable<any>{
+    return this.http.get('http://localhost:8091/negocios/listar/id/'+id);
+  }
 }
