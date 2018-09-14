@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JsonApiBodyRequestOferta } from "../../../model/jsonApiBodyRequestOferta";
 import {RegistrarRequestOferta} from '../../../model/registrarRequestOferta';
 import {ServicioOfertaService} from '../../services/servicio-oferta.service';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 @Component({
   selector: 'app-editar-oferta',
   templateUrl: './editar-oferta.component.html',
@@ -12,11 +13,14 @@ import {ServicioOfertaService} from '../../services/servicio-oferta.service';
 })
 export class EditarOfertaComponent implements OnInit {
   forma:FormGroup;
-
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  variable:any;
   foto;
   constructor(private sesion:SesionesService,
     private enrutador:Router,
-    private servicio_oferta:ServicioOfertaService) {
+    private servicio_oferta:ServicioOfertaService,
+    private afStorage: AngularFireStorage) {
       console.log(servicio_oferta.oferta.idnegocio);
       this.forma= new FormGroup({
         'producto': new  FormControl(servicio_oferta.oferta.producto),
@@ -24,7 +28,7 @@ export class EditarOfertaComponent implements OnInit {
         'valor': new  FormControl(servicio_oferta.oferta.valor),
         'descuento': new  FormControl(servicio_oferta.oferta.descuento),
         'foto': new  FormControl(),
-        'tipo': new  FormControl(),
+        'tipo': new  FormControl(servicio_oferta.oferta.tipo),
         'fecha_inicio': new  FormControl(servicio_oferta.oferta.fecha_inicio),
         'fecha_final': new  FormControl(servicio_oferta.oferta.fecha_final),
         //  'ubicacion': new  FormControl(servicio_oferta.oferta.ubicacion)
@@ -39,6 +43,16 @@ export class EditarOfertaComponent implements OnInit {
 
   ngOnInit() {
   }
+  upload(event) {
+      this.ref = this.afStorage.ref("oferta"+this.servicio_oferta.oferta.id);
+      this.task = this.ref.put(event.target.files[0]);
+      this.task.then(() => {
+        this.ref.getDownloadURL().subscribe((url) => {
+         this.variable=url
+        });
+      });
+      
+  }
   guardar(){
     let descuento = this.forma.controls['descuento'].value;
 
@@ -49,7 +63,7 @@ export class EditarOfertaComponent implements OnInit {
     oferta.detalle=this.forma.controls['detalle'].value;
     oferta.valor=this.forma.controls['valor'].value;
     oferta.descuento= descuento == null ? ' ' : descuento;
-    oferta.foto=this.servicio_oferta.oferta.foto;
+    oferta.foto=this.variable==""?this.servicio_oferta.oferta.foto:this.variable;
     oferta.idnegocio=this.servicio_oferta.oferta.idnegocio;
     oferta.tipo=this.forma.controls['tipo'].value;
     oferta.fecha_inicio=this.forma.controls['fecha_inicio'].value;
@@ -68,20 +82,5 @@ export class EditarOfertaComponent implements OnInit {
       
     })
   }
-  upload(event) {
-  //  this.foto=event.target.files[0];  
-  this.readThis(event.target);
  
-  }
-  readThis(valor:any){
-    var file:File=valor.files[0];
-    var myReader:FileReader= new FileReader();
-    myReader.onload=(e)=>{
-      this.foto=myReader.result;
-
-    }
-    myReader.readAsDataURL(file);
-    
-  }
-  
 }

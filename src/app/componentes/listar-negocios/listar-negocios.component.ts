@@ -23,7 +23,8 @@ export class ListarNegociosComponent implements OnInit {
   bodyPeticion= new JsonApiBodyRequestGetNegocio();
   permisos='administrador';
   respuesta:any;
-  
+  error:boolean=false;
+  Mensaje:any;
   constructor(private servicio_negocio:ServicioNegocioService,private sesion:SesionesService,private enrutador: Router) {
     try {
       let rol=sesion.persona[0].rol.toLowerCase();
@@ -54,7 +55,11 @@ export class ListarNegociosComponent implements OnInit {
     this.servicio_negocio.getListarNegocios(this.bodyPeticion).subscribe(data=>{
       // console.log(data);
       this.respuesta=data;
+      this.error=false;
       this.body=this.respuesta;
+    },err=>{
+      this.error=true;
+      this.Mensaje="No hay negocios registrados"
     })
   }
   eliminar(id:string){

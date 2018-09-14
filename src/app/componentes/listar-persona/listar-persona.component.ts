@@ -16,6 +16,8 @@ export class ListarPersonaComponent implements OnInit {
   personaEliminar= new DeleteRequestPersona();
   bodyEliminar = new JsonApiBodyRequestDeletePersona();
   respuesta:any;
+  error:boolean=false;
+  Mensaje:any;
   constructor(private servicio_persona:ServicioPersonaService,
     private sesion:SesionesService,
     private enrutador:Router) {
@@ -45,6 +47,10 @@ export class ListarPersonaComponent implements OnInit {
     this.servicio_persona.getListarPersonas().subscribe(data=>{
       this.respuesta=data;
       this.personas=this.respuesta;
+    },
+    err=>{
+      this.error=true;
+      this.Mensaje="NO hay personas registrads";
     })
   }
 

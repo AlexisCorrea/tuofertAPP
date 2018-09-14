@@ -6,5 +6,9 @@ import { RegistrarRequestPersona } from '../../model/registrarRequestPersona';
 })
 export class SesionesService {
   public persona: Array<RegistrarRequestPersona>;
-  constructor() { }
+  validarSesion:boolean=false;
+  iniciales:string;
+  constructor() { 
+
+  }
 }

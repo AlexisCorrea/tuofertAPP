@@ -21,7 +21,7 @@ export class RegistrarOfertaComponent implements OnInit {
   task: AngularFireUploadTask;
   forma:FormGroup;
   variable:any;
-  error:boolean=true;
+  error:boolean=false;
   Mensaje:any;
   exito:boolean=false;
   constructor(private servicio_oferta:ServicioOfertaService,
@@ -43,14 +43,19 @@ export class RegistrarOfertaComponent implements OnInit {
   ngOnInit() {
   }
   upload(event) {
-    const id = Math.random().toString(36).substring(2);
-    this.ref = this.afStorage.ref(id);
-    this.task = this.ref.put(event.target.files[0]);
-    this.task.then(() => {
-      this.ref.getDownloadURL().subscribe((url) => {
-       this.variable=url
+    this.servicio_oferta.getUltimoID().subscribe(data=>{
+      this.ref = this.afStorage.ref("oferta"+data);
+      this.task = this.ref.put(event.target.files[0]);
+      this.task.then(() => {
+        this.ref.getDownloadURL().subscribe((url) => {
+         this.variable=url;
+        });
       });
-    });
+    },
+    err=>{
+
+    })
+   
   }
   guardar(){
     if (this.validar()) {
@@ -59,7 +64,7 @@ export class RegistrarOfertaComponent implements OnInit {
       this.oferta.detalle=this.forma.controls['detalle'].value;
       this.oferta.valor=this.forma.controls['valor'].value;
       this.oferta.descuento=this.forma.controls['descuento'].value;
-      this.oferta.foto=this.variable;
+      this.oferta.foto=this.variable==""?'https://firebasestorage.googleapis.com/v0/b/imgtuofertapp.appspot.com/o/icons8-archivo-de-imagen-128.png?alt=media&token=199ef34b-347b-41fb-b26e-8605e2d55439':this.variable;
       this.oferta.fecha_inicio=this.forma.controls['fecha_inicio'].value;
       this.oferta.fecha_final=this.forma.controls['fecha_final'].value;
       this.oferta.tipo=this.forma.controls['tipo'].value;

@@ -21,10 +21,10 @@ export class RegistrarNegocioComponent implements OnInit {
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   variable
-  error: boolean = true;
+  error: boolean = false;
   Mensaje: any;
-  exito:boolean=false;
-  constructor( private enrutador:Router,private servicio_negocio: ServicioNegocioService,
+  exito: boolean = false;
+  constructor(private enrutador: Router, private servicio_negocio: ServicioNegocioService,
     private sesion: SesionesService, private afStorage: AngularFireStorage) {
     this.forma = new FormGroup({
       'id': new FormControl(this.negocio.id),
@@ -41,15 +41,20 @@ export class RegistrarNegocioComponent implements OnInit {
     });
   }
   upload(event) {
-    const id = Math.random().toString(36).substring(2);
-    this.ref = this.afStorage.ref(id);
-    this.task = this.ref.put(event.target.files[0]);
-    this.task.then(() => {
-      this.ref.getDownloadURL().subscribe((url) => {
-        this.variable = url;
-        console.log(this.variable);
+    this.servicio_negocio.getUltimoID().subscribe(data => {
+      // const id = Math.random().toString(36).substring(2);
+      console.log("esta es la data");
+      console.log(data);
+      this.ref = this.afStorage.ref("negocio"+data);
+      this.task = this.ref.put(event.target.files[0]);
+      this.task.then(() => {
+        this.ref.getDownloadURL().subscribe((url) => {
+          this.variable = url;
+          console.log(this.variable);
+        });
       });
-    });
+
+    })
 
   }
   ngOnInit() {
@@ -62,7 +67,7 @@ export class RegistrarNegocioComponent implements OnInit {
       this.negocio.nombre = this.forma.controls['nombre'].value;
       this.negocio.nit = this.forma.controls['nit'].value;
       this.negocio.correo = this.forma.controls['correo'].value;
-      this.negocio.foto = this.variable;
+      this.negocio.foto = this.variable==""?'https://firebasestorage.googleapis.com/v0/b/imgtuofertapp.appspot.com/o/icons8-archivo-de-imagen-128.png?alt=media&token=199ef34b-347b-41fb-b26e-8605e2d55439':this.variable;
       this.negocio.detalle = this.forma.controls['detalle'].value;
       this.negocio.telefono = this.forma.controls['telefono'].value;
       this.negocio.tipo = this.forma.controls['tipo'].value;
@@ -76,13 +81,13 @@ export class RegistrarNegocioComponent implements OnInit {
       this.servicio_negocio.postRegistrarNegocio(this.body).subscribe(data => {
         console.log(data);
         this.forma.reset();
-        this.exito=true;
+        this.exito = true;
         this.enrutador.navigate(['Administrador']);
       },
-      err=>{
-        this.error=true;
-        this.Mensaje="NO se logro registrar el negocio "+ err;
-      })
+        err => {
+          this.error = true;
+          this.Mensaje = "NO se logro registrar el negocio " + err;
+        })
     }
   }
   validar(): boolean {

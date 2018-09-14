@@ -1,3 +1,4 @@
+
 <div class="contenedorTabla">
   <table class="table table-striped">
     <thead class="thead-dark headTable">
@@ -26,6 +27,9 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div *ngIf="error" class="alert alert-danger">
+  <strong>Error!</strong>{{Mensaje}}
 </div>
 
 

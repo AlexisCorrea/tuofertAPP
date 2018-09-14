@@ -5,6 +5,8 @@ import {  SesionesService} from "../../services/sesiones.service";
 import { JsonApiBodyRequestNegocio } from "../../../model/jsonApiBodyRequestNegocio";
 import { RegistrarRequestNegocio } from "../../../model/registrarRequestNegocio";
 import { Router } from '@angular/router';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+
 
 @Component({
   selector: 'app-editar-negocio',
@@ -15,16 +17,21 @@ export class EditarNegocioComponent implements OnInit {
   forma:FormGroup;
   negocio= new RegistrarRequestNegocio();
   body= new JsonApiBodyRequestNegocio();
+  foto: any;
+  variable="";
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
   constructor(private servicio_negocio:ServicioNegocioService,
     private sesion:SesionesService,
     private enrutador:Router,
+    private afStorage: AngularFireStorage
     ) { 
     this.forma= new FormGroup({
       
       'nombre': new  FormControl(servicio_negocio.bodynegocio.nombre),
       'nit': new FormControl(servicio_negocio.bodynegocio.nit),
       'correo': new  FormControl(servicio_negocio.bodynegocio.correo),
-      'foto': new  FormControl(servicio_negocio.bodynegocio.foto),
+      'foto': new  FormControl(),
       'detalle': new  FormControl(servicio_negocio.bodynegocio.detalle),
       'telefono': new  FormControl(servicio_negocio.bodynegocio.telefono),
       'tipo': new  FormControl(servicio_negocio.bodynegocio.tipo),
@@ -42,13 +49,27 @@ export class EditarNegocioComponent implements OnInit {
 
   ngOnInit() {
   }
+  upload(event) {
+    
+      // const id = Math.random().toString(36).substring(2);
+      
+      this.ref = this.afStorage.ref("negocio"+this.servicio_negocio.bodynegocio.id);
+      this.task = this.ref.put(event.target.files[0]);
+      this.task.then(() => {
+        this.ref.getDownloadURL().subscribe((url) => {
+          this.variable = url;
+          console.log(this.variable);
+        });
+      });
+
+  }
   guardar(valor1:string,valor2:string){
     
     this.negocio.id=this.servicio_negocio.bodynegocio.id
     this.negocio.nombre=this.forma.controls['nombre'].value;
     this.negocio.nit=this.forma.controls['nit'].value;
     this.negocio.correo=this.forma.controls['correo'].value;
-    this.negocio.foto=this.servicio_negocio.bodynegocio.foto;
+    this.negocio.foto=this.variable==""?this.servicio_negocio.bodynegocio.foto:this.variable;
     this.negocio.detalle=this.forma.controls['detalle'].value;
     this.negocio.telefono=this.forma.controls['telefono'].value;
     this.negocio.tipo=this.forma.controls['tipo'].value;

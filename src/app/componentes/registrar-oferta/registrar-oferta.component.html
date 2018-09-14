@@ -1,57 +1,58 @@
 <div class="contenedor">
   <form [(formGroup)]="forma" (ngSubmit)="guardar()">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="inputEmail4">Producto</label>
-            <input formControlName="producto" name="producto" type="text" class="form-control" id="inputEmail4" >
-          </div>
-          <div class="form-group col-md-12">
-            <label for="inputPassword4">Detalle</label>
-            <input formControlName="detalle" name="detalle" type="text" class="form-control" id="inputPassword4" >
-          </div>
-          <div class="form-group col-md-12">
-             <label for="inputPassword4">Valor</label>
-             <input formControlName="valor" name="valor" type="text" class="form-control" id="inputPassword4" >
-          </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
-              <label for="inputEmail4">Descuento</label>
-              <input formControlName="descuento" name="descuento" type="text" class="form-control" id="inputEmail4" >
-            </div>
-            <div class="form-group col-md-12">
-              <label for="inputPassword4">foto</label>
-              <input (change)="upload($event)" formControlName="foto" name="foto" type="file" class="form-control" id="inputPassword4" >
-            </div>
-            <div class="form-group col-md-12">
-                <label for="inputPassword4">fecha inicio</label>
-                <input formControlName="fecha_inicio" name="fecha_inico" type="date" class="form-control" id="inputPassword4" >
-              </div>
-          </div>
-  
-        <div class="form-row">
-            
-              <div class="form-group col-md-12">
-                  <label for="inputAddress2">fecha final</label>
-                  <input formControlName="fecha_final" name="fecha_final" type="date" class="form-control" id="inputAddress2" >
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputState">Tipo oferta</label>
-                    <select formControlName="tipo" name="tipo"  class="form-control">
-                      
-                      <option>Promocion</option>
-                      <option>Descuento</option>
-                    </select>
-                  </div>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="filtrar()">Guardar cambios</button>
-      </form>
-      <div *ngIf="error" class="alert alert-danger">
-          <strong>Error!</strong>{{Mensaje}}
-        </div>
-        <div *ngIf="exito" class="alert alert-success">
-            <strong>Success!</strong> Registro exitoso
-          </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="inputEmail4">Producto</label>
+        <input formControlName="producto" name="producto" type="text" class="form-control" id="inputEmail4">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputPassword4">Detalle</label>
+        <input formControlName="detalle" name="detalle" type="text" class="form-control" id="inputPassword4">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputPassword4">Valor</label>
+        <input formControlName="valor" name="valor" type="text" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="inputEmail4">Descuento</label>
+        <input formControlName="descuento" name="descuento" type="text" class="form-control" id="inputEmail4">
+      </div>
+
+
+      <div class="form-group col-md-12">
+        <label for="inputState">Tipo oferta</label>
+        <select formControlName="tipo" name="tipo" class="form-control">
+
+          <option>Promocion</option>
+          <option>Descuento</option>
+        </select>
+      </div>
+
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">fecha inicio</label>
+        <input formControlName="fecha_inicio" name="fecha_inico" type="date" class="form-control" id="inputPassword4">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputAddress2">fecha final</label>
+        <input formControlName="fecha_final" name="fecha_final" type="date" class="form-control" id="inputAddress2">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputPassword4">foto</label>
+        <input (change)="upload($event)" formControlName="foto" name="foto" type="file" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+  </form>
+  <div *ngIf="error" class="alert alert-danger">
+    <strong>Error!</strong>{{Mensaje}}
+  </div>
+  <div *ngIf="exito" class="alert alert-success">
+    <strong>Success!</strong> Registro exitoso
+  </div>
 </div>
-
-

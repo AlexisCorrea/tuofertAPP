@@ -1,6 +1,4 @@
-
 <div class="contenedor">
-
   <form [(formGroup)]="forma" (ngSubmit)="guardar()">
     <div class="form-row">
       <div class="form-group col-md-6 ">
@@ -15,14 +13,10 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Correo</label>
-        <input formControlName="correo" name="correo" type="email" class="form-control">
-      </div>
-      <div class="form-group col-md-3">
         <label for="inputPassword4">Contraseña</label>
         <input formControlName="contrasena" name="contrasena" type="password" class="form-control">
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-6">
         <label for="inputPassword4">Confirmar contraseña</label>
         <input formControlName="confirmacion" name="confirmacion" type="password" class="form-control">
       </div>
@@ -36,37 +30,24 @@
         <label for="inputAddress2">ciudad</label>
         <input formControlName="ciudad" name="ciudad" type="text" class="form-control">
       </div>
-
     </div>
-
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputState">Tipo Usuario</label>
-        <select formControlName="rol" name="rol" class="form-control">
-
-          <option>Administrador</option>
-          <option>Cliente</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="inputState">Genero</label>
         <select formControlName="genero" name="genero" class="form-control">
-
           <option>Masculino</option>
           <option>Femenino</option>
           <option>Otro</option>
         </select>
       </div>
-
     </div>
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" class="btn btn-primary">Aceptar</button>
   </form>
   <div *ngIf="error" class="alert alert-danger">
     <strong>Error!</strong>{{Mensaje}}
   </div>
   <div *ngIf="exito" class="alert alert-success">
-      <strong>Success!</strong> Registro exitoso
-    </div>
-    
+    <strong>Success!</strong> Registro exitoso
+  </div>
+
 </div>

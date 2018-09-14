@@ -1,28 +1,30 @@
 
-    <table class="table table-striped">
-        <thead class="thead-dark headTable">
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Correo</th>
-          <th scope="col">Telefono</th>
-          <th scope="col">Genero</th>
-          <th scope="col">Rol</th>
-          <th scope="col">Ciudad</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Eliminar</th>
-        </thead>
-        <tbody>
-          <tr class="headTable" *ngFor="let persona of personas.persona; let i = index">
-            <td><label >{{persona.nombre}}</label></td>
-            <td><label >{{persona.apellidos}}</label></td>
-            <td><label >{{persona.correo}}</label></td>
-            <td><label >{{persona.telefono}}</label></td>
-            <td><label >{{persona.genero}}</label></td>
-            <td><label >{{persona.rol}}</label></td>
-            <td><label >{{persona.ciudad}}</label></td>
-            <td><button (click)="editar(i)" class="btn btn-primary">Editar</button></td>
-            <td><button (click)="eliminar(persona.id)" class="btn btn-danger">Eliminar  </button></td>
-          </tr>
-        </tbody>
-      </table>
-     
+<table class="table table-striped">
+  <thead class="thead-dark headTable">
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">Correo</th>
+    <th scope="col">Telefono</th>
+    <th scope="col">Genero</th>
+    <th scope="col">Rol</th>
+    <th scope="col">Ciudad</th>
+    <th scope="col">Editar</th>
+    <th scope="col">Eliminar</th>
+  </thead>
+  <tbody>
+    <tr class="headTable"  *ngFor="let persona of personas.persona; let i = index">
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.nombre}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.apellidos}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.correo}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.telefono}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.genero}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.rol}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><label>{{persona.ciudad}}</label></td>
+      <td *ngIf="persona.rol!='super administrador'"><button (click)="editar(i)" class="btn btn-primary">Editar</button></td>
+      <td *ngIf="persona.rol!='super administrador'"><button (click)="eliminar(persona.id)" class="btn btn-danger">Eliminar </button></td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="error" class="alert alert-danger">
+  <strong>Error!</strong>{{Mensaje}}
+</div>

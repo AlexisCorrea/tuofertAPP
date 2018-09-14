@@ -1,0 +1,28 @@
+nav.navbar {
+    font-family: 'Courgette', cursive;
+    background: #220d48;
+    color: white;
+    font-size: 1.5rem;
+    height: 68px;
+}
+.borbuja{
+    /* width: 100%;
+    background: #b36711;
+    border-radius: 50%; */
+    height: 68px;
+    width: 68px;
+    border-radius: 50%;
+    color: white;
+    padding-top: 0.9%;
+}
+.nav-link{
+    height: 100% !important;
+}
+
+.menuDesplegable{
+    position: absolute;
+    margin-left: 90%;
+}
+a{
+    color: white;
+}

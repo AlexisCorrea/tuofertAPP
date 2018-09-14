@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <a class="navbar-brand" href="#">
+    <img src="../assets/img/icono.png" width="30px" height="30px" style="color:white" alt="">
+    TuofertAPP
+  </a>
+  <button *ngIf="sesion.validarSesion"  class="btn btn-outline-info my-2 my-sm-0 borbuja"  type="submit" data-toggle="dropdown">
+    <h2>{{sesion.iniciales}}</h2>
+  </button>
+
+  <ul class="dropdown-menu menuDesplegable">
+    <li><a class="dropdown-item" (click)="editar()" style="color:black">Editar Perfil</a></li>
+    <li><a class="dropdown-item" href="#" style="color:black">Salir</a></li>
+  </ul>
+
+</nav>

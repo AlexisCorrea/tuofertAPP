@@ -30,5 +30,8 @@ export class ServicioOfertaService {
   getOfertasByIDNegocio(id):Observable<any>{
     return this.http.get("http://localhost:8070/ofertas/listar/"+id);
   }
+  getUltimoID():Observable<any>{
+    return this.http.get("http://localhost:8070/ofertas/obtenerIDsiguiente");
+  }
   
 }

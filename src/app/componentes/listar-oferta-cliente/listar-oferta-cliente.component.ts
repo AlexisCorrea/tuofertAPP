@@ -24,6 +24,9 @@ export class ListarOfertaClienteComponent implements OnInit {
   permisos="cliente";
   oferta_eliminar= new DeleteRequestOferta();
   body_oferta_Eliminar= new JsonApiBodyRequestDeleteOferta();
+  error:boolean=false;
+  Mensaje:any;
+
   constructor(private servicio_oferta:ServicioOfertaService,
     private servicio_negocio:ServicioNegocioService,
     private sesion:SesionesService,
@@ -62,6 +65,10 @@ export class ListarOfertaClienteComponent implements OnInit {
       this.respuesta=data;
       this.body_oferta=this.respuesta;
       
+    },
+    err=>{
+      this.error=true;
+      this.Mensaje="No hay ofertas registradas";
     })
   }
 

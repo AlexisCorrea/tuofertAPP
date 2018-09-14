@@ -29,7 +29,8 @@ export class ListarOfertaComponent implements OnInit {
   ofertas_correctas:Array<any>=[];
   oferta_eliminar= new DeleteRequestOferta();
   body_oferta_Eliminar= new JsonApiBodyRequestDeleteOferta();
-  
+  error:boolean=false;
+  Mensaje:any;
   constructor(private servicio_oferta:ServicioOfertaService,private servicio_negocio:ServicioNegocioService,private sesion:SesionesService,private enrutador: Router) {
       this.llenarTabla();
    }
@@ -85,6 +86,10 @@ export class ListarOfertaComponent implements OnInit {
             }
         }
       }
+    },
+    err=>{
+      this.error=true;
+      this.Mensaje="No hay ofertas registradas";
     })
   }
 }

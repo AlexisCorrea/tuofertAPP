@@ -10,12 +10,16 @@ import {PanelAdministradorComponent} from '../app/componentes/panel-administrado
 import {RegistrarOfertaComponent} from '../app/componentes/registrar-oferta/registrar-oferta.component';
 import {MapaComponent} from '../app/componentes/mapa/mapa.component';
 import {EditarPersonaComponent} from '../app/componentes/editar-persona/editar-persona.component';
-
+import {EditarPerfilComponent} from '../app/componentes/editar-perfil/editar-perfil.component';
 const rutas: Routes = [
   {path: '', component: BienvenidaComponent, pathMatch: 'full' },
   {
     path: 'Bienvenida',
     component: BienvenidaComponent
+  },
+  {
+    path: 'EditarPerfil',
+    component: EditarPerfilComponent
   },
   {
     path: 'EditarPersona',

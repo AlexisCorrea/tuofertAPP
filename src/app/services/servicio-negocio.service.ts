@@ -36,4 +36,7 @@ export class ServicioNegocioService {
   getByID(id):Observable<any>{
     return this.http.get('http://localhost:8091/negocios/listar/id/'+id);
   }
+  getUltimoID():Observable<any>{
+    return this.http.get('http://localhost:8091/negocios/obtenerIDsiguiente');
+  }
 }

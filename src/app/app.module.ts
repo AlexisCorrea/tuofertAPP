@@ -46,6 +46,8 @@ import { ListarOfertaClienteComponent } from './componentes/listar-oferta-client
 import { PanelSuperAdministradorComponent } from './componentes/panel-super-administrador/panel-super-administrador.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
 import { EditarPersonaComponent } from './componentes/editar-persona/editar-persona.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 
 
 
@@ -86,6 +88,8 @@ export function getAuthServiceConfigs() {
     PanelSuperAdministradorComponent,
     MapaComponent,
     EditarPersonaComponent,
+    NavbarComponent,
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

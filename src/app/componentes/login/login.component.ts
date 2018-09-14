@@ -90,12 +90,18 @@ export class LoginComponent implements OnInit{
     }
     if (respuesta.persona[0].rol  ==="administrador" || respuesta.persona[0].rol==="Administrador") {
       this.sesion.persona=[respuesta.persona[0]];
+      this.sesion.validarSesion=true;
+      this.sesion.iniciales=this.sesion.persona[0].nombre.split('',1).toString().toUpperCase()+''+this.sesion.persona[0].apellidos.split('',1).toString().toUpperCase();
       this.enrutador.navigate(['Administrador']);
     }else if (respuesta.persona[0].rol==="Cliente" || respuesta.persona[0].rol==="cliente") {
       this.sesion.persona=[respuesta.persona[0]];
+      this.sesion.validarSesion=true;
+      this.sesion.iniciales=this.sesion.persona[0].nombre.split('',1).toString().toUpperCase()+''+this.sesion.persona[0].apellidos.split('',1).toString().toUpperCase();
       this.enrutador.navigate(['Cliente']);
     } else{
       this.sesion.persona=[respuesta.persona[0]];
+      this.sesion.validarSesion=true;
+      this.sesion.iniciales=this.sesion.persona[0].nombre.split('',1).toString().toUpperCase()+''+this.sesion.persona[0].apellidos.split('',1).toString().toUpperCase();
       this.enrutador.navigate(['Super']);
      
       // this.enrutador.navigate(['Super']);
